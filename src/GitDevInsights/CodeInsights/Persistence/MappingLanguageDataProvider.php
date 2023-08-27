@@ -51,7 +51,10 @@ class MappingLanguageDataProvider {
         return $extensions;
     }
 
-    public function getProgrammingLanguages() {
+    /**
+     * @return ProgrammingLanguage[]
+     */
+    public function getProgrammingLanguages(): array {
         return $this->programmingLanguages;
     }
 }

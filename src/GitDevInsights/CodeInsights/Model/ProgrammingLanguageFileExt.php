@@ -2,7 +2,7 @@
 
 namespace gitDevInsights\CodeInsights\Model;
 
-class ProgrammingLanguageFileExt {
+final class ProgrammingLanguageFileExt {
     private string $extension;
     private ProgrammingLanguage $language;
 
