@@ -18,6 +18,9 @@ class ProjectConfigDataProvider {
         $this->checkoutPath = $configData['checkout_path'] ?? '';
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function loadConfig(string $configFile): array {
         if (!file_exists($configFile)) {
             throw new \InvalidArgumentException("Config file not found: $configFile");
