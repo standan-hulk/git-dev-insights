@@ -31,3 +31,13 @@ TypeScript:
 YAML:
   - yaml
   - yml
+
+XML:
+  - xml
+
+Python:
+  - py
+
+Documentation:
+  - rst
+  - md
