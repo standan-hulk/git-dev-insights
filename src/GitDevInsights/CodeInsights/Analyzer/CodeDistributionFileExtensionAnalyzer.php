@@ -4,6 +4,7 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
+use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
 
 class CodeDistributionFileExtensionAnalyzer {
     private MappingLanguageDataProvider $mappingDataProvider;
@@ -13,18 +14,14 @@ class CodeDistributionFileExtensionAnalyzer {
      */
     private array $supportedExtensions;
 
-    /**
-     * @var array<string, int>
-     */
-    private array $codeFileDistribution;
+    private FileExtensionAnalysisResult $fileExtensionAnalysisResult;
     private string $repositoryPath;
 
     public function __construct(MappingLanguageDataProvider $mappingDataProvider, string $repositoryPath) {
         $this->mappingDataProvider = $mappingDataProvider;
         $this->supportedExtensions = $this->initSupportedExtensions();
         $this->repositoryPath = $repositoryPath;
-
-        $this->codeFileDistribution = array_fill_keys($this->supportedExtensions, 0);
+        $this->fileExtensionAnalysisResult = new FileExtensionAnalysisResult();
     }
 
     /**
@@ -41,13 +38,10 @@ class CodeDistributionFileExtensionAnalyzer {
         return $result;
     }
 
-    /**
-     * @return array<string, int>
-     */
-    public function analyzeRepository(): array {
+    public function analyzeRepository(): FileExtensionAnalysisResult {
         $this->processDirectory($this->repositoryPath);
 
-        return $this->codeFileDistribution;
+        return $this->fileExtensionAnalysisResult;
     }
 
     private function processDirectory(string $path) : void {
@@ -75,7 +69,9 @@ class CodeDistributionFileExtensionAnalyzer {
                         $linesCounter = count($lines);
                     }
 
-                    $this->codeFileDistribution[$fileExtension] += $linesCounter;
+                    if ($linesCounter > 0) {
+                        $this->fileExtensionAnalysisResult->addFileExtensionLines($fileExtension, $linesCounter);
+                    }
                 }
             }
         }
