@@ -1,0 +1,61 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:analyzeRepository\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:getSupportedExtensions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:processDirectory\\(\\) has parameter \\$path with no type specified\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:\\$codeFileDistribution type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:\\$supportedExtensions type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Class gitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage referenced with incorrect case\\: GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionLanguageAnalyzer.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionLanguageAnalyzer\\:\\:analyzeByLanguage\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionLanguageAnalyzer.php
+
+		-
+			message: "#^Class gitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage referenced with incorrect case\\: GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage\\.$#"
+			count: 5
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Class gitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguageFileExt referenced with incorrect case\\: GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguageFileExt\\.$#"
+			count: 5
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:__construct\\(\\) has parameter \\$filePath with no type specified\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:findExtensionsByLanguage\\(\\) should return array\\<gitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguageFileExt\\> but returns array\\<int\\<0, max\\>, \\(int\\|string\\)\\>\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
