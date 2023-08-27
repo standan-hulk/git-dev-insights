@@ -2,42 +2,20 @@
 
 require_once('vendor/autoload.php');
 
-// Verzeichnis, in dem das Repository geklont wurde
+use GitDevInsights\CodeInsights\Analyzer\CodeDistributionAnalyzer;
+use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
+
+// TODO: Programming languages sollten ihre Datei-extensions hosten
+
 $repositoryPath = 'source-repo/data/Star-Confederation';
 
-// Array der unterstützten Dateierweiterungen
-$supportedExtensions = ['php', 'css', 'html', 'js', 'ts'];
+$codeInsightsLanguageYaml = 'config/code-insights-languages.yaml';
 
-// Array zur Speicherung der Code-Verteilung
-$codeDistribution = array_fill_keys($supportedExtensions, 0);
+$mappingDataProvider = new MappingLanguageDataProvider($codeInsightsLanguageYaml);
+$codeDistributionAnalyzer = new CodeDistributionAnalyzer($mappingDataProvider);
 
-// Funktion zur rekursiven Verarbeitung von Dateien und Verzeichnissen
-function processDirectory($path, &$codeDistribution, $supportedExtensions)
-{
-    $dir = new DirectoryIterator($path);
-
-    foreach ($dir as $fileInfo) {
-        if ($fileInfo->isDot()) {
-            continue;
-        }
-
-        $filePath = $fileInfo->getPathname();
-
-        if ($fileInfo->isDir()) {
-            processDirectory($filePath, $codeDistribution, $supportedExtensions);
-        } elseif ($fileInfo->isFile()) {
-            $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-            if (in_array($fileExtension, $supportedExtensions)) {
-                $lines = file($filePath);
-                $codeDistribution[$fileExtension] += count($lines);
-            }
-        }
-    }
-}
-
-// Rufen Sie die Verarbeitungsfunktion auf dem Repository-Verzeichnis auf
-processDirectory($repositoryPath, $codeDistribution, $supportedExtensions);
+// Analysieren Sie das Repository und erhalten Sie die Code-Verteilung
+$codeDistribution = $codeDistributionAnalyzer->analyzeRepository($repositoryPath);
 
 // Ausgabe der Code-Verteilung
 print_r($codeDistribution);

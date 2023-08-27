@@ -2,28 +2,31 @@
 
 namespace GitDevInsights\CodeInsights\Analyzer;
 
+use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 
 class CodeDistributionAnalyzer {
     private MappingLanguageDataProvider $mappingDataProvider;
     private array $supportedExtensions;
-    private array $codeDistribution;
+    private array $codeFileDistribution;
 
     public function __construct(MappingLanguageDataProvider $mappingDataProvider) {
         $this->mappingDataProvider = $mappingDataProvider;
         $this->supportedExtensions = $this->getSupportedExtensions();
-        $this->codeDistribution = array_fill_keys($this->supportedExtensions, 0);
+
+        $this->codeFileDistribution = array_fill_keys($this->supportedExtensions, 0);
     }
 
     public function analyzeRepository($repositoryPath): array {
         $this->processDirectory($repositoryPath);
 
-        return $this->codeDistribution;
+        return $this->codeFileDistribution;
     }
 
     private function getSupportedExtensions(): array {
         // Hier könnten Sie die unterstützten Erweiterungen aus dem MappingDataProvider erhalten
         $programmingLanguages = $this->mappingDataProvider->getProgrammingLanguages();
+
         $supportedExtensions = [];
 
         foreach ($programmingLanguages as $programmingLanguage) {
@@ -35,7 +38,7 @@ class CodeDistributionAnalyzer {
     }
 
     private function processDirectory($path) : void {
-        $dir = new \DirectoryIterator($path);
+        $dir = new DirectoryIterator($path);
 
         foreach ($dir as $fileInfo) {
             if ($fileInfo->isDot()) {
@@ -47,11 +50,13 @@ class CodeDistributionAnalyzer {
             if ($fileInfo->isDir()) {
                 $this->processDirectory($filePath);
             } elseif ($fileInfo->isFile()) {
+
                 $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
+                    dump($fileExtension);
                     $lines = file($filePath);
-                    $this->codeDistribution[$fileExtension] += count($lines);
+                    $this->codeFileDistribution[$fileExtension] += count($lines);
                 }
             }
         }

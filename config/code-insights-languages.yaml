@@ -1,0 +1,33 @@
+PHP:
+  - php
+  - phtml
+  - php3
+  - php4
+  - php5
+  - php7
+
+MySQL:
+  - sql
+
+Less:
+  - less
+
+Sass:
+  - scss
+
+CSS:
+  - css
+
+HTML:
+  - html
+  - htm
+
+JavaScript:
+  - js
+
+TypeScript:
+  - ts
+
+YAML:
+  - yaml
+  - yml

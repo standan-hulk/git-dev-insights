@@ -16,6 +16,6 @@ final class ProgrammingLanguageFileExt {
     }
 
     public function getLanguage(): string {
-        return $this->language;
+        return $this->language->getName();
     }
 }
