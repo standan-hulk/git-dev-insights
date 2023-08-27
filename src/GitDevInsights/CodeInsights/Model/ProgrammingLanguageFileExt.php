@@ -1,21 +1,16 @@
 <?php
 
-namespace gitDevInsights\CodeInsights\Model;
+namespace GitDevInsights\CodeInsights\Model;
 
+/**
+ * @immmutable
+ */
 final class ProgrammingLanguageFileExt {
-    private string $extension;
-    private ProgrammingLanguage $language;
+    public string $name;
+    public ProgrammingLanguage $language;
 
     public function __construct(string $extension, ProgrammingLanguage $language) {
-        $this->extension = $extension;
+        $this->name = $extension;
         $this->language = $language;
-    }
-
-    public function getExtension(): string {
-        return $this->extension;
-    }
-
-    public function getLanguage(): string {
-        return $this->language->getName();
     }
 }

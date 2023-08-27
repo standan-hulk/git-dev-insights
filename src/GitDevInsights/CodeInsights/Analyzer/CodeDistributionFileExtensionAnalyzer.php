@@ -21,10 +21,24 @@ class CodeDistributionFileExtensionAnalyzer {
 
     public function __construct(MappingLanguageDataProvider $mappingDataProvider, string $repositoryPath) {
         $this->mappingDataProvider = $mappingDataProvider;
-        $this->supportedExtensions = $this->getSupportedExtensions();
+        $this->supportedExtensions = $this->initSupportedExtensions();
         $this->repositoryPath = $repositoryPath;
 
         $this->codeFileDistribution = array_fill_keys($this->supportedExtensions, 0);
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function initSupportedExtensions(): array {
+        $dataProviderFileExtensions = $this->mappingDataProvider->getFileExtensions();
+
+        $result = [];
+        foreach ($dataProviderFileExtensions as $fileExtension) {
+            $result[] = $fileExtension->name;
+        }
+
+        return $result;
     }
 
     /**
@@ -34,23 +48,6 @@ class CodeDistributionFileExtensionAnalyzer {
         $this->processDirectory($this->repositoryPath);
 
         return $this->codeFileDistribution;
-    }
-
-    /**
-     * @return array<string>
-     */
-    private function getSupportedExtensions(): array {
-        // Hier könnten Sie die unterstützten Erweiterungen aus dem MappingDataProvider erhalten
-        $programmingLanguages = $this->mappingDataProvider->getProgrammingLanguages();
-
-        $supportedExtensions = [];
-
-        foreach ($programmingLanguages as $programmingLanguage) {
-            $extensions = $this->mappingDataProvider->findExtensionsByLanguage($programmingLanguage);
-            $supportedExtensions = array_merge($supportedExtensions, $extensions);
-        }
-
-        return array_unique($supportedExtensions);
     }
 
     private function processDirectory(string $path) : void {
