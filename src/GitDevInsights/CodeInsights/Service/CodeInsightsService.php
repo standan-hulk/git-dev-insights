@@ -17,7 +17,7 @@ class CodeInsightsService {
         $this->projectConfigProvider = new ProjectConfigDataProvider($projectConfigFile);
     }
 
-    public function analyze(): void {
+    public function analyse(): void {
         // Analyse der Dateiextensionen
         $codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($this->languageDataProvider, $this->projectConfigProvider->checkoutPath);
         $fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
