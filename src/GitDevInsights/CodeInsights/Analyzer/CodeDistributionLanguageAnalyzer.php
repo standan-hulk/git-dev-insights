@@ -26,7 +26,7 @@ class CodeDistributionLanguageAnalyzer {
             }
 
             if ($lines > 0) {
-                $result->setLanguageLines( $languageByExtension->language->name, $lines);
+                $result->addLanguageLines( $languageByExtension->language->name, $lines);
             }
         }
 
