@@ -3,23 +3,22 @@
 namespace GitDevInsights\CodeInsights\Analyzer;
 
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
+use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
 use GitDevInsights\CodeInsights\Results\LanguageAnalysisResult;
 
 class CodeDistributionLanguageAnalyzer {
-    private CodeDistributionFileExtensionAnalyzer $fileExtensionAnalyzer;
+    private FileExtensionAnalysisResult $fileExtensionAnalysisResult;
     private MappingLanguageDataProvider $languageDataProvider;
 
-    public function __construct(MappingLanguageDataProvider $languageDataProvider, CodeDistributionFileExtensionAnalyzer $fileExtensionAnalyzer) {
+    public function __construct(MappingLanguageDataProvider $languageDataProvider, FileExtensionAnalysisResult $fileExtensionAnalysisResult) {
         $this->languageDataProvider = $languageDataProvider;
-        $this->fileExtensionAnalyzer = $fileExtensionAnalyzer;
+        $this->fileExtensionAnalysisResult = $fileExtensionAnalysisResult;
     }
 
     public function analyzeByLanguage(): LanguageAnalysisResult {
-        $fileDistribution = $this->fileExtensionAnalyzer->analyzeRepository();
-
         $result = new LanguageAnalysisResult();
 
-        foreach ($fileDistribution as $extension => $lines) {
+        foreach ($this->fileExtensionAnalysisResult->getData() as $extension => $lines) {
             $languageByExtension = $this->languageDataProvider->findLanguageByExtension($extension);
 
             if ($languageByExtension === null) {
