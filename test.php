@@ -3,19 +3,21 @@
 require_once('vendor/autoload.php');
 
 use GitDevInsights\CodeInsights\Analyzer\CodeDistributionFileExtensionAnalyzer;
+use GitDevInsights\CodeInsights\Analyzer\CodeDistributionLanguageAnalyzer;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 
-// TODO: Programming languages sollten ihre Datei-extensions hosten
+// TODO: Programming languages sollten ihre Datei-extensions beinhalten in den Objekten?
+// TODO: Mit result Objekten arbeiten
 
-$repositoryPath = 'source-repo/data/Star-Confederation';
+$repositoryPath = 'source-repo/data/php-github-api';
 
 $codeInsightsLanguageYaml = 'config/code-insights-languages.yaml';
 
-$mappingDataProvider = new MappingLanguageDataProvider($codeInsightsLanguageYaml);
-$codeDistributionAnalyzer = new CodeDistributionFileExtensionAnalyzer($mappingDataProvider);
+$languageDataProvider = new MappingLanguageDataProvider($codeInsightsLanguageYaml);
+$codeDistributionAnalyzer = new CodeDistributionFileExtensionAnalyzer($languageDataProvider, $repositoryPath);
+$codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($languageDataProvider, $codeDistributionAnalyzer);
 
-// Analysieren Sie das Repository und erhalten Sie die Code-Verteilung
-$codeDistribution = $codeDistributionAnalyzer->analyzeRepository($repositoryPath);
-
+dump($codeDistributionLanguageAnalyzer->analyzeByLanguage());diE;
+// TODO: mit Resultdaten arbieten
 // Ausgabe der Code-Verteilung
 print_r($codeDistribution);

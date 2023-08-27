@@ -9,16 +9,18 @@ class CodeDistributionFileExtensionAnalyzer {
     private MappingLanguageDataProvider $mappingDataProvider;
     private array $supportedExtensions;
     private array $codeFileDistribution;
+    private string $repositoryPath;
 
-    public function __construct(MappingLanguageDataProvider $mappingDataProvider) {
+    public function __construct(MappingLanguageDataProvider $mappingDataProvider, string $repositoryPath) {
         $this->mappingDataProvider = $mappingDataProvider;
         $this->supportedExtensions = $this->getSupportedExtensions();
+        $this->repositoryPath = $repositoryPath;
 
         $this->codeFileDistribution = array_fill_keys($this->supportedExtensions, 0);
     }
 
-    public function analyzeRepository($repositoryPath): array {
-        $this->processDirectory($repositoryPath);
+    public function analyzeRepository(): array {
+        $this->processDirectory($this->repositoryPath);
 
         return $this->codeFileDistribution;
     }
@@ -54,7 +56,6 @@ class CodeDistributionFileExtensionAnalyzer {
                 $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
-                    dump($fileExtension);
                     $lines = file($filePath);
                     $this->codeFileDistribution[$fileExtension] += count($lines);
                 }
