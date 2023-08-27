@@ -5,7 +5,7 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 
-class CodeDistributionAnalyzer {
+class CodeDistributionFileExtensionAnalyzer {
     private MappingLanguageDataProvider $mappingDataProvider;
     private array $supportedExtensions;
     private array $codeFileDistribution;
