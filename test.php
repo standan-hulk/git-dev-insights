@@ -5,17 +5,15 @@ require_once('vendor/autoload.php');
 use GitDevInsights\CodeInsights\Analyzer\CodeDistributionFileExtensionAnalyzer;
 use GitDevInsights\CodeInsights\Analyzer\CodeDistributionLanguageAnalyzer;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
+use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 
-// TODO: Programming languages sollten ihre Datei-extensions beinhalten in den Objekten?
-// TODO: Mit result Objekten arbeiten
-
-$repositoryPath = 'source-repo/data/phpmyadmin';
+$projectConfigProvider = new ProjectConfigDataProvider('project-configs/phpmyadmin.yaml');
 
 $codeInsightsLanguageYaml = 'config/code-insights-languages.yaml';
 
 $languageDataProvider = new MappingLanguageDataProvider($codeInsightsLanguageYaml);
 
-$codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($languageDataProvider, $repositoryPath);
+$codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($languageDataProvider, $projectConfigProvider->checkoutPath);
 $fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
 dump($fileExtensionAnalysisResult);
 

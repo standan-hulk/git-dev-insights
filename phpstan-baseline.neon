@@ -1,2 +1,6 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\ProjectConfigDataProvider\\:\\:loadConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
