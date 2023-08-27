@@ -27,7 +27,7 @@ class CodeDistributionLanguageAnalyzer {
                 continue;
             }
 
-            $languageName = $languageByExtension->getLanguage();
+            $languageName = $languageByExtension->language->name;
 
             if (!isset($result[$languageName])) {
                 $result[$languageName] = 0;
