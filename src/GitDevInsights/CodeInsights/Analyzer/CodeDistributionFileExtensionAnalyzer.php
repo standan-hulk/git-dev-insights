@@ -7,7 +7,15 @@ use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 
 class CodeDistributionFileExtensionAnalyzer {
     private MappingLanguageDataProvider $mappingDataProvider;
+
+    /**
+     * @var array<string>
+     */
     private array $supportedExtensions;
+
+    /**
+     * @var array<string, int>
+     */
     private array $codeFileDistribution;
     private string $repositoryPath;
 
@@ -19,12 +27,18 @@ class CodeDistributionFileExtensionAnalyzer {
         $this->codeFileDistribution = array_fill_keys($this->supportedExtensions, 0);
     }
 
+    /**
+     * @return array<string, int>
+     */
     public function analyzeRepository(): array {
         $this->processDirectory($this->repositoryPath);
 
         return $this->codeFileDistribution;
     }
 
+    /**
+     * @return array<string>
+     */
     private function getSupportedExtensions(): array {
         // Hier könnten Sie die unterstützten Erweiterungen aus dem MappingDataProvider erhalten
         $programmingLanguages = $this->mappingDataProvider->getProgrammingLanguages();
@@ -39,7 +53,7 @@ class CodeDistributionFileExtensionAnalyzer {
         return array_unique($supportedExtensions);
     }
 
-    private function processDirectory($path) : void {
+    private function processDirectory(string $path) : void {
         $dir = new DirectoryIterator($path);
 
         foreach ($dir as $fileInfo) {
@@ -57,7 +71,14 @@ class CodeDistributionFileExtensionAnalyzer {
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
                     $lines = file($filePath);
-                    $this->codeFileDistribution[$fileExtension] += count($lines);
+
+                    if (false === $lines) {
+                        $linesCounter = 0;
+                    } else {
+                        $linesCounter = count($lines);
+                    }
+
+                    $this->codeFileDistribution[$fileExtension] += $linesCounter;
                 }
             }
         }

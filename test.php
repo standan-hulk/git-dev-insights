@@ -19,5 +19,6 @@ $codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($langua
 
 dump($codeDistributionLanguageAnalyzer->analyzeByLanguage());diE;
 // TODO: mit Resultdaten arbieten
+// TODO: checken, ob alle line endings zuverlässig erkannt werden
 // Ausgabe der Code-Verteilung
 print_r($codeDistribution);

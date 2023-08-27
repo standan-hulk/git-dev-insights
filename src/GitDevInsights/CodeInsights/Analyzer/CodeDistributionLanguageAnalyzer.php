@@ -2,7 +2,6 @@
 
 namespace GitDevInsights\CodeInsights\Analyzer;
 
-use GitDevInsights\CodeInsights\Model\ProgrammingLanguage;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 
 class CodeDistributionLanguageAnalyzer {
@@ -14,6 +13,9 @@ class CodeDistributionLanguageAnalyzer {
         $this->fileExtensionAnalyzer = $fileExtensionAnalyzer;
     }
 
+    /**
+     * @return array<string, int>
+     */
     public function analyzeByLanguage(): array {
         $fileDistribution = $this->fileExtensionAnalyzer->analyzeRepository();
 

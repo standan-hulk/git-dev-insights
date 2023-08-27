@@ -2,8 +2,8 @@
 
 namespace GitDevInsights\CodeInsights\Persistence;
 
-use GitDevInsights\CodeInsights\Model\ProgrammingLanguage;
-use GitDevInsights\CodeInsights\Model\ProgrammingLanguageFileExt;
+use gitDevInsights\CodeInsights\Model\ProgrammingLanguage;
+use gitDevInsights\CodeInsights\Model\ProgrammingLanguageFileExt;
 use Symfony\Component\Yaml\Yaml;
 
 class MappingLanguageDataProvider {
@@ -18,7 +18,7 @@ class MappingLanguageDataProvider {
      */
     private array $fileExtensions = [];
 
-    public function __construct($filePath) {
+    public function __construct(string $filePath) {
         $data = Yaml::parseFile($filePath);
 
         foreach ($data as $languageName => $extensions) {
@@ -37,7 +37,7 @@ class MappingLanguageDataProvider {
     }
 
     /**
-     * @return ProgrammingLanguageFileExt[]
+     * @return array<string>
      */
     public function findExtensionsByLanguage(ProgrammingLanguage $language): array{
         $extensions = [];
