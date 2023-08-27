@@ -71,7 +71,14 @@ class CodeDistributionFileExtensionAnalyzer {
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
                     $lines = file($filePath);
-                    $this->codeFileDistribution[$fileExtension] += count($lines);
+
+                    if (false === $lines) {
+                        $linesCounter = 0;
+                    } else {
+                        $linesCounter = count($lines);
+                    }
+
+                    $this->codeFileDistribution[$fileExtension] += $linesCounter;
                 }
             }
         }

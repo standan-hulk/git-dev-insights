@@ -18,7 +18,7 @@ class MappingLanguageDataProvider {
      */
     private array $fileExtensions = [];
 
-    public function __construct($filePath) {
+    public function __construct(string $filePath) {
         $data = Yaml::parseFile($filePath);
 
         foreach ($data as $languageName => $extensions) {
