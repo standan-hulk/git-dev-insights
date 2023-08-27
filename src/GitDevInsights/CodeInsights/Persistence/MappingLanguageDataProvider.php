@@ -26,8 +26,11 @@ class MappingLanguageDataProvider {
             $this->programmingLanguages[] = $programmingLanguage;
 
             foreach ($extensions as $extension) {
+                $fileExtension = new ProgrammingLanguageFileExt($extension, $programmingLanguage);
                 // Caution: A file extension MUST belong to one programming language by now
-                $programmingLanguage->addExtension(new ProgrammingLanguageFileExt($extension, $programmingLanguage));
+                $programmingLanguage->addExtension($fileExtension);
+
+                $this->fileExtensions[$extension] = $fileExtension;
             }
         }
     }
