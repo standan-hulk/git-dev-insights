@@ -14,7 +14,7 @@ php test.php
 #cd source-repo/data/Star-Confederation
 #git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 #cd ../../..
-#php test.php
+#php analyse.php
 
 
 #rm -rf test/Star-Confederation
