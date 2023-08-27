@@ -1,0 +1,2 @@
+repository_url: https://github.com/phpmyadmin/phpmyadmin.git source-repo/data/phpmyadmin
+checkout_path: source-repo/data/phpmyadmin
