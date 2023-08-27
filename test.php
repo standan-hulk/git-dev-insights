@@ -9,16 +9,16 @@ use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 // TODO: Programming languages sollten ihre Datei-extensions beinhalten in den Objekten?
 // TODO: Mit result Objekten arbeiten
 
-$repositoryPath = 'source-repo/data/php-github-api';
+$repositoryPath = 'source-repo/data/phpmyadmin';
 
 $codeInsightsLanguageYaml = 'config/code-insights-languages.yaml';
 
 $languageDataProvider = new MappingLanguageDataProvider($codeInsightsLanguageYaml);
-$codeDistributionAnalyzer = new CodeDistributionFileExtensionAnalyzer($languageDataProvider, $repositoryPath);
-$codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($languageDataProvider, $codeDistributionAnalyzer);
 
-dump($codeDistributionLanguageAnalyzer->analyzeByLanguage());diE;
-// TODO: mit Resultdaten arbieten
-// TODO: checken, ob alle line endings zuverlässig erkannt werden
-// Ausgabe der Code-Verteilung
-print_r($codeDistribution);
+$codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($languageDataProvider, $repositoryPath);
+$fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
+dump($fileExtensionAnalysisResult);
+
+$codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($languageDataProvider, $fileExtensionAnalysisResult);
+$languageAnalysisResult = $codeDistributionLanguageAnalyzer->analyzeByLanguage();
+dump($languageAnalysisResult);die;
