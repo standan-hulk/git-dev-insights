@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "GitDevInsights\\": "src/gitDevInsights"
+            "GitDevInsights\\": "src/GitDevInsights"
         }
     },
     "require": {
