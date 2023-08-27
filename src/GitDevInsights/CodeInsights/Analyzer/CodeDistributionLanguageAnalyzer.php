@@ -3,6 +3,7 @@
 namespace GitDevInsights\CodeInsights\Analyzer;
 
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
+use GitDevInsights\CodeInsights\Results\LanguageAnalysisResult;
 
 class CodeDistributionLanguageAnalyzer {
     private CodeDistributionFileExtensionAnalyzer $fileExtensionAnalyzer;
@@ -13,13 +14,11 @@ class CodeDistributionLanguageAnalyzer {
         $this->fileExtensionAnalyzer = $fileExtensionAnalyzer;
     }
 
-    /**
-     * @return array<string, int>
-     */
-    public function analyzeByLanguage(): array {
+    public function analyzeByLanguage(): LanguageAnalysisResult {
         $fileDistribution = $this->fileExtensionAnalyzer->analyzeRepository();
 
-        $result = [];
+        $result = new LanguageAnalysisResult();
+
         foreach ($fileDistribution as $extension => $lines) {
             $languageByExtension = $this->languageDataProvider->findLanguageByExtension($extension);
 
@@ -27,12 +26,9 @@ class CodeDistributionLanguageAnalyzer {
                 continue;
             }
 
-            $languageName = $languageByExtension->language->name;
-
-            if (!isset($result[$languageName])) {
-                $result[$languageName] = 0;
+            if ($lines > 0) {
+                $result->setLanguageLines( $languageByExtension->language->name, $lines);
             }
-            $result[$languageName] += $lines;
         }
 
         return $result;
