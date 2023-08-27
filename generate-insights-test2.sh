@@ -3,7 +3,7 @@
 #rm -rf source-repo/data/Star-Confederation
 
 # Git-Repository klonen
-#git clone https://github.com/KnpLabs/php-github-api.git source-repo/data/php-github-api
+#git clone https://github.com/phpmyadmin/phpmyadmin.git source-repo/data/phpmyadmin
 
 # In das geklonte Verzeichnis wechseln
 echo "--- first run";
