@@ -6,28 +6,30 @@ use GitDevInsights\CodeInsights\Analyzer\CodeDistributionFileExtensionAnalyzer;
 use GitDevInsights\CodeInsights\Analyzer\CodeDistributionLanguageAnalyzer;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
+use GitDevInsights\CodeInsights\Results\AnalysisResult;
 
 class CodeInsightsService {
     private CONST DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG = 'config/code-insights-languages.yaml';
+
     private MappingLanguageDataProvider $languageDataProvider;
+
     private ProjectConfigDataProvider $projectConfigProvider;
 
-    public function __construct(string $projectConfigFile) {
+    public AnalysisResult $analysisResult;
+
+    public function __construct(ProjectConfigDataProvider $projectConfigDataProvider, AnalysisResult $analysisResult) {
         $this->languageDataProvider = new MappingLanguageDataProvider(self::DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG);
-        $this->projectConfigProvider = new ProjectConfigDataProvider($projectConfigFile);
+        $this->projectConfigProvider = $projectConfigDataProvider;
+        $this->analysisResult = $analysisResult;
     }
 
-    public function analyse(): void {
-        // Analyse der Dateiextensionen
+    public function analyse(int $currentTimestamp): void {
         $codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($this->languageDataProvider, $this->projectConfigProvider->checkoutPath);
         $fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
 
-        // Analyse der Programmiersprachen
         $codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($this->languageDataProvider, $fileExtensionAnalysisResult);
         $languageAnalysisResult = $codeDistributionLanguageAnalyzer->analyzeByLanguage();
 
-        // Hier können Sie die Ergebnisse weiterverarbeiten oder ausgeben
-        dump($fileExtensionAnalysisResult);
-        dump($languageAnalysisResult);
+        $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult);
     }
 }

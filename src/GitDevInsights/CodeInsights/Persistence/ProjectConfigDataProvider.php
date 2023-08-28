@@ -10,12 +10,14 @@ use Symfony\Component\Yaml\Yaml;
 class ProjectConfigDataProvider {
     public string $repositoryUrl;
     public string $checkoutPath;
+    public string $analyseResultPath;
 
     public function __construct(string $configFile) {
         $configData = $this->loadConfig($configFile);
 
         $this->repositoryUrl = $configData['repository_url'] ?? '';
         $this->checkoutPath = $configData['checkout_path'] ?? '';
+        $this->analyseResultPath = $configData['analyse_result_path'] ?? '';
     }
 
     /**

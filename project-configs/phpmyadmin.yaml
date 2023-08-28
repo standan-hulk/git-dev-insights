@@ -1,2 +1,3 @@
 repository_url: https://github.com/phpmyadmin/phpmyadmin.git source-repo/data/phpmyadmin
 checkout_path: source-repo/data/phpmyadmin
+analyse_result_path: source-repo/generated-stats/phpmyadmin
