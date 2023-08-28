@@ -36,7 +36,7 @@ class MappingLanguageDataProvider {
     }
 
     public function findLanguageByExtension(string $fileExt): ?ProgrammingLanguageFileExt {
-        return $this->fileExtensions[$fileExt] ?? null;
+        return $this->fileExtensions[strtolower($fileExt)] ?? null;
     }
 
     /**
