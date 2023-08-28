@@ -29,7 +29,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    for($i = 0; $i < 10; $i++) {
+    for($i = 0; $i < 50; $i++) {
         $codeInsightsService->analyse($tsChartTime);
 
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
