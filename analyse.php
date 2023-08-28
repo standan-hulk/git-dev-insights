@@ -20,8 +20,6 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $codeInsightsService->analyse(time());
 
     $analysisResult->outputToJsonFile($jsonOutputPath);
-    dump($analysisResult);
-    die;
 } else {
     echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }

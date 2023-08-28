@@ -31,5 +31,7 @@ class CodeInsightsService {
         $languageAnalysisResult = $codeDistributionLanguageAnalyzer->analyzeByLanguage();
 
         $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult);
+
+        $this->analysisResult->outputToJsonFile($this->projectConfigProvider->analyseResultPath);
     }
 }
