@@ -45,9 +45,8 @@ class LanguageChartHTMLFileGenerator
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div style="width: 80%; margin: 0 auto;">
-    <!-- HTML Canvas element for rendering the chart -->
-    <canvas id="myChart" width="400" height="400"></canvas>
+<div style="width: 80vw; height: 90vh; margin: 0 auto;">
+    <canvas id="myChart" width="600" height="400"></canvas>
 </div>
 
 <script>
