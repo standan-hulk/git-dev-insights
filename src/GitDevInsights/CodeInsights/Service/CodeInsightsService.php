@@ -15,12 +15,12 @@ class CodeInsightsService {
 
     private ProjectConfigDataProvider $projectConfigProvider;
 
-    private AnalysisResult $analysisResult;
+    public AnalysisResult $analysisResult;
 
-    public function __construct(string $projectConfigFile) {
+    public function __construct(ProjectConfigDataProvider $projectConfigDataProvider, AnalysisResult $analysisResult) {
         $this->languageDataProvider = new MappingLanguageDataProvider(self::DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG);
-        $this->projectConfigProvider = new ProjectConfigDataProvider($projectConfigFile);
-        $this->analysisResult = new AnalysisResult();
+        $this->projectConfigProvider = $projectConfigDataProvider;
+        $this->analysisResult = $analysisResult;
     }
 
     public function analyse(int $currentTimestamp): void {

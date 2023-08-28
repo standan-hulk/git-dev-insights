@@ -1,17 +1,27 @@
 <?php
 
+use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
+use GitDevInsights\CodeInsights\Results\AnalysisResult;
 use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 
 require_once('vendor/autoload.php');
 
-// Überprüfen, ob der Parameter --config übergeben wurde
 if (isset($argv[1]) && $argv[1] === '--config') {
-    // Wenn ja, verwenden Sie den nächsten Parameter als Konfigurationsdatei
-    $configFile = $argv[2];
+    $projectConfigFile = $argv[2];
 
-    // Übergeben Sie die Konfigurationsdatei an den CodeInsightsService
-    $codeInsightsService = new CodeInsightsService($configFile);
-    $codeInsightsService->analyse();
+    $jsonOutputPath = 'source-repo/generated-stats/'.time();
+    if (isset($argv[3]) && $argv[3] === '--outputPath') {
+        $jsonOutputPath = $argv[4];
+    }
+
+    $projectConfigDataProvider = new ProjectConfigDataProvider($projectConfigFile);
+    $analysisResult = new AnalysisResult();
+    $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
+    $codeInsightsService->analyse(time());
+
+    $analysisResult->outputToJsonFile($jsonOutputPath);
+    dump($analysisResult);
+    die;
 } else {
-    echo "Verwendung: php analyse.php --config [Konfigurationsdatei]\n";
+    echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }
