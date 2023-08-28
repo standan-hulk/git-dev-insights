@@ -16,4 +16,4 @@
 3. Run `sh analyse.sh` (your project shell script.
 
 # example graph
-![Graph Example](https://github.com/standan-hulk/git-dev-insights/raw/main/files/graph-example.png)
+![Graph Example](https://raw.githubusercontent.com/standan-hulk/git-dev-insights/master/files/graph-example.png)
