@@ -19,8 +19,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $analysisResult = new AnalysisResult();
 
     // checkout the repo
-    $command = 'git clone '.$projectConfigDataProvider->repositoryUrl;
-    shell_exec($command);
+    shell_exec('git clone '.$projectConfigDataProvider->repositoryUrl);
 
     $tsChartTime = strtotime('last Monday');
     $targetDate = date('Y-m-d', $tsChartTime);
@@ -37,7 +36,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
         $output = shell_exec("cd ".$projectConfigDataProvider->checkoutPath ." && git checkout ".$commitHash);
 
-        $tsChartTime = $tsChartTime - $weekInSeconds;
+        $tsChartTime = $tsChartTime - $monthInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
         dump($targetDate);
     }
