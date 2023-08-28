@@ -22,6 +22,7 @@ class CodeDistributionFileExtensionAnalyzer {
         $this->supportedExtensions = $this->initSupportedExtensions();
         $this->repositoryPath = $repositoryPath;
         $this->fileExtensionAnalysisResult = new FileExtensionAnalysisResult();
+        $this->initExtensionLines();
     }
 
     /**
@@ -36,6 +37,13 @@ class CodeDistributionFileExtensionAnalyzer {
         }
 
         return $result;
+    }
+
+    private function initExtensionLines(): void {
+        $dataProviderFileExtensions = $this->mappingDataProvider->getFileExtensions();
+        foreach ($dataProviderFileExtensions as $fileExtension) {
+            $this->fileExtensionAnalysisResult->addFileExtensionLines($fileExtension->name, 0);
+        }
     }
 
     public function analyzeRepository(): FileExtensionAnalysisResult {
@@ -58,9 +66,9 @@ class CodeDistributionFileExtensionAnalyzer {
                 $this->processDirectory($filePath);
             } elseif ($fileInfo->isFile()) {
 
-                $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+                $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
-                if (in_array(strtolower($fileExtension), $this->supportedExtensions)) {
+                if (in_array($fileExtension, $this->supportedExtensions)) {
                     $lines = file($filePath);
 
                     if (false === $lines) {
