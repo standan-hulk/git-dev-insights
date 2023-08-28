@@ -22,10 +22,6 @@ class LanguageAnalysisResult {
         return $this->data;
     }
 
-    public function getLanguageLines(string $language): ?int {
-        return $this->data[$language] ?? null;
-    }
-
     public function addLanguageLines(string $language, int $lines): void {
         if (!isset($this->data[$language])) {
             $this->data[$language] = 0;

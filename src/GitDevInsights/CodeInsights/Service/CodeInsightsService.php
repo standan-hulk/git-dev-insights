@@ -26,10 +26,10 @@ class CodeInsightsService {
     public function analyse(int $currentTimestamp): void {
         $codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($this->languageDataProvider, $this->projectConfigProvider->checkoutPath);
         $fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
-        $this->analysisResult->addFileExtensionResult($currentTimestamp, $fileExtensionAnalysisResult);
 
         $codeDistributionLanguageAnalyzer = new CodeDistributionLanguageAnalyzer($this->languageDataProvider, $fileExtensionAnalysisResult);
         $languageAnalysisResult = $codeDistributionLanguageAnalyzer->analyzeByLanguage();
-        $this->analysisResult->addLanguageResult($currentTimestamp, $languageAnalysisResult);
+
+        $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult);
     }
 }

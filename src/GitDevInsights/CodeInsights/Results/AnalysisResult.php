@@ -7,27 +7,22 @@ class AnalysisResult
     private CONST DATA_PROVIDER_INSIGHTS_OUTPUT_FILE = 'code-insights.json';
 
     /**
-     * @var array<int, FileExtensionAnalysisResult>
+     * @var array<int, AnalysisResultRecord>
      */
-    private array $fileExtensionResults = [];
+    private array $analysisResults = [];
 
-    /**
-     * @var array<int, LanguageAnalysisResult>
-     */
-    private array $languageResults = [];
-
-    public function addFileExtensionResult(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult): void
+    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult): void
     {
-        $this->fileExtensionResults[$resultTimestamp] = $fileExtensionAnalysisResult;
-    }
+        $analysisResultRecord = new AnalysisResultRecord($fileExtensionAnalysisResult, $languageAnalysisResult);
+        $analysisResultRecord->__toArray();
 
-    public function addLanguageResult(int $resultTimestamp, LanguageAnalysisResult $languageAnalysisResult): void
-    {
-        $this->languageResults[$resultTimestamp] = $languageAnalysisResult;
+        $this->analysisResults[$resultTimestamp] = $analysisResultRecord;
     }
 
     private function __toJson(): string {
         $analysisData = [];
+
+        dump($this->analysisResults);die;
 
         return json_encode($analysisData, JSON_PRETTY_PRINT);
     }
