@@ -25,11 +25,12 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $tsChartTime = strtotime('last Monday');
     $targetDate = date('Y-m-d', $tsChartTime);
 
-    $weekInSeconds = 7 * 24 * 60 * 60; // One week in seconds
+    $weekInSeconds = 7 * 24 * 60 * 60;
+    $monthInSeconds = $weekInSeconds * 4;
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    for($i = 0; $i < 5; $i++) {
+    for($i = 0; $i < 10; $i++) {
         $codeInsightsService->analyse($tsChartTime);
 
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
@@ -41,6 +42,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
         dump($targetDate);
     }
 
+    $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
 
     $jsonData = $analysisResult->__toJsonData();
     $htmlOutput = new LanguageChartHTMLFileGenerator($jsonData);
