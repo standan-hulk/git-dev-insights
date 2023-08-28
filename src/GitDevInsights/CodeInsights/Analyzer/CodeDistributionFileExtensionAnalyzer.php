@@ -60,7 +60,7 @@ class CodeDistributionFileExtensionAnalyzer {
 
                 $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 
-                if (in_array($fileExtension, $this->supportedExtensions)) {
+                if (in_array(strtolower($fileExtension), $this->supportedExtensions)) {
                     $lines = file($filePath);
 
                     if (false === $lines) {
