@@ -24,7 +24,13 @@ class AnalysisResult
         $this->languageAnalysisResult[$resultTimestamp] = $languageAnalysisResult;
     }
 
-    private function __toJson(): string {
+    public function __toJson(): string {
+        $analysisData = $this->__toJsonData();
+
+        return json_encode($analysisData, JSON_PRETTY_PRINT);
+    }
+
+    public function __toJsonData(): array {
         $analysisData = [
             'language-fileext-data' => [],
             'language-global-data' => []
@@ -32,15 +38,16 @@ class AnalysisResult
 
 
         foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
-            $analysisData['language-fileext-data'][$resultTimestamp] = $analysisResultRecord->getData();
+            $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
         }
 
         foreach ($this->languageAnalysisResult as $resultTimestamp => $analysisResultRecord) {
-            $analysisData['language-global-data'][$resultTimestamp] = $analysisResultRecord->getData();
+            $analysisData['language-global-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
         }
 
-        return json_encode($analysisData, JSON_PRETTY_PRINT);
+        return $analysisData;
     }
+
 
     public function outputToJsonFile(string $outputPath): void {
         // Check if the output path is a valid directory
