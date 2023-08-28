@@ -101,10 +101,9 @@ class LanguageChartHTMLFileGenerator
     }
 
 
-    public function writeChartOutputToFile($fileName)
+    public function writeChartOutputToFile($fileName) : void
     {
         $html = $this->renderChartOutput();
         file_put_contents($fileName, $html);
-        return 'Die HTML-Datei "' . $fileName . '" wurde erfolgreich erstellt.';
     }
 }
