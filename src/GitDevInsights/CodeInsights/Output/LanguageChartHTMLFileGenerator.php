@@ -24,19 +24,17 @@ class LanguageChartHTMLFileGenerator
             $labels[] = $date;
 
             foreach ($values as $language => $count) {
-                $dataset = [
-                    "label" => $language,
-                    "data" => [],
-                    "fill" => false,
-                    "borderColor" => $colors[$i],
-                    "tension" => 0.1,
-                ];
-
-                foreach ($this->jsonData["language-global-data"] as $date => $langData) {
-                    $dataset["data"][] = $langData[$language];
+                if (!isset($datasets[$i])) {
+                    $datasets[$i] = [
+                        "label" => $language,
+                        "data" => [],
+                        "fill" => false,
+                        "borderColor" => $colors[$i % count($colors)], // Verwenden von Modulo, um die Farbe zuzuweisen
+                        "tension" => 0.1,
+                    ];
                 }
 
-                $datasets[] = $dataset;
+                $datasets[$i]["data"][] = $count;
 
                 $i++;
             }
