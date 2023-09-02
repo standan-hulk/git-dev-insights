@@ -7,6 +7,16 @@ use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 
 require_once('vendor/autoload.php');
 
+function calculateProgress($currentPosition, $total) {
+    if ($total <= 0) {
+        return '0%';
+    }
+
+    $percentage = ($currentPosition / $total) * 100;
+    return round($percentage) . '%';
+}
+
+
 if (isset($argv[1]) && $argv[1] === '--config') {
     $projectConfigFile = $argv[2];
 
@@ -18,8 +28,9 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $projectConfigDataProvider = new ProjectConfigDataProvider($projectConfigFile);
     $analysisResult = new AnalysisResult();
 
+    shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
     // checkout the repo
-    shell_exec('git clone '.$projectConfigDataProvider->repositoryUrl);
+    shell_exec('git clone '.$projectConfigDataProvider->repositoryUrl.' '.$projectConfigDataProvider->checkoutPath);
 
     $tsChartTime = strtotime('last Monday');
     $targetDate = date('Y-m-d', $tsChartTime);
@@ -29,28 +40,32 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    for($i = 0; $i < 50; $i++) {
+    $totalWeeks = 150;
+
+    for($i = 0; $i < $totalWeeks; $i++) {
         $codeInsightsService->analyse($tsChartTime);
 
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
 
         $output = shell_exec("cd ".$projectConfigDataProvider->checkoutPath ." && git checkout ".$commitHash);
 
-        $tsChartTime = $tsChartTime - $monthInSeconds;
+        $tsChartTime = $tsChartTime - $weekInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
-        dump($targetDate);
+
+        echo calculateProgress($i, $totalWeeks) . "\n";
     }
 
     $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
 
     $jsonData = $analysisResult->__toJsonData();
-    $htmlOutput = new LanguageChartHTMLFileGenerator($jsonData);
+    $htmlOutput = new LanguageChartHTMLFileGenerator($jsonData, $projectConfigDataProvider->projectName);
 
     $html = $htmlOutput->renderChartOutput();
 
     $fileName = $projectConfigDataProvider->analyseResultPath.'/chart.html';
-    $result = $htmlOutput->writeChartOutputToFile($fileName);
+    $htmlOutput->writeChartOutputToFile($fileName);
 
+    shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {
     echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }

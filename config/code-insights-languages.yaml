@@ -1,12 +1,11 @@
 PHP:
   - php
-  - phtml
   - php3
   - php4
   - php5
   - php7
 
-MySQL:
+SQL:
   - sql
 
 Less:
@@ -21,8 +20,9 @@ CSS:
 HTML:
   - html
   - htm
+  - phtml
 
-JavaScript:
+JavaScript [JS FILES]:
   - js
 
 TypeScript:
@@ -35,9 +35,10 @@ YAML:
 XML:
   - xml
 
-Python:
-  - py
-
 Documentation:
   - rst
   - md
+
+# deep insights
+JavaScript [INLINE]:
+  - __inline_js__

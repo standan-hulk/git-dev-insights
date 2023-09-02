@@ -4,17 +4,20 @@ namespace GitDevInsights\CodeInsights\Output;
 
 class LanguageChartHTMLFileGenerator
 {
-    private $jsonData;
+    private array $jsonData;
 
-    public function __construct(array $jsonData)
+    private string $chartTitle;
+
+    public function __construct(array $jsonData, string $chartTitle)
     {
         $this->jsonData = $jsonData;
+        $this->chartTitle = $chartTitle;
     }
 
-    public function renderChartOutput()
+    public function renderChartOutput(): string
     {
         // Extract dates and labels
-        $dates = array_keys($this->jsonData['language-global-data']);
+        $dates = array_keys(array_reverse($this->jsonData['language-global-data']));
         $labels = array_keys($this->jsonData['language-global-data'][$dates[0]]);
 
         // Generate datasets for each label
@@ -38,15 +41,35 @@ class LanguageChartHTMLFileGenerator
         $html = '<!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h2 {
+            font-size: 13px;
+        }
+        
+        canvas {
+            border: 1px solid black;
+            margin: 0 auto;
+            width: 80vw;
+            height: 80vh;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line Chart Example</title>
+    <title>'.$this->chartTitle.' - code trends</title>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+<h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
+<h2>Usage of Programming Languages by Number of Lines of Code</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
-    <canvas id="myChart" width="600" height="400"></canvas>
+    <canvas id="trend_chart" width="" height=""></canvas>
 </div>
 
 <script>
@@ -54,7 +77,7 @@ class LanguageChartHTMLFileGenerator
     var datasets = ' . json_encode($datasets) . ';
 
     // Create the chart
-    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx = document.getElementById("trend_chart").getContext("2d");
     var myChart = new Chart(ctx, {
         type: "line",
         data: {
@@ -93,7 +116,7 @@ class LanguageChartHTMLFileGenerator
         return $html;
     }
 
-    public function writeChartOutputToFile($fileName) : void
+    public function writeChartOutputToFile(string $fileName) : void
     {
         $html = $this->renderChartOutput();
         file_put_contents($fileName, $html);

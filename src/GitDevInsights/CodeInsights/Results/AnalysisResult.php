@@ -1,20 +1,18 @@
 <?php
 namespace GitDevInsights\CodeInsights\Results;
 
-use GitDevInsights\CodeInsights\Model\ProgrammingLanguageFileExt;
-
 class AnalysisResult
 {
 
     private CONST DATA_PROVIDER_INSIGHTS_OUTPUT_FILE = 'code-insights.json';
 
     /**
-     * @var fileExtensionAnalysisResult[]
+     * @var FileExtensionAnalysisResult[]
      */
     private array $fileExtensionAnalysisResult = [];
 
     /**
-     * @var ProgrammingLanguageFileExt[]
+     * @var LanguageAnalysisResult[]
      */
     private array $languageAnalysisResult = [];
 
@@ -27,7 +25,13 @@ class AnalysisResult
     public function __toJson(): string {
         $analysisData = $this->__toJsonData();
 
-        return json_encode($analysisData, JSON_PRETTY_PRINT);
+        $result = json_encode($analysisData, JSON_PRETTY_PRINT);;
+
+        if ($result === false) {
+            return '';
+        }
+
+        return $result;
     }
 
     public function __toJsonData(): array {
@@ -37,9 +41,9 @@ class AnalysisResult
         ];
 
 
-    #    foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
-    #        $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
-    #    }
+        foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
+        }
 
         foreach ($this->languageAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-global-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
