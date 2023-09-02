@@ -5,8 +5,6 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
-use GitDevInsights\FileTools\Service\JsFileJqueryUsageFileAnalyzer;
-use GitDevInsights\FileTools\Service\JsFileUsageFileAnalyzer;
 use GitDevInsights\FileTools\Service\JsInlineScriptTagFileAnalyzer;
 
 class CodeDistributionFileExtensionAnalyzer {
@@ -96,12 +94,6 @@ class CodeDistributionFileExtensionAnalyzer {
             $jsInlineScriptTagFileAnalyzer = new JsInlineScriptTagFileAnalyzer($fileName);
             $linesCounter = $jsInlineScriptTagFileAnalyzer->countInlineScriptLines();
             $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_js__", $linesCounter);
-        }
-
-        if (JsFileJqueryUsageFileAnalyzer::isAllowedToScan($fileExtension)) {
-            $jsJqueryUsageFileAnalyzer = new JsFileJqueryUsageFileAnalyzer($fileName);
-            $linesCounter = $jsJqueryUsageFileAnalyzer->countJqueryLines();
-            $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_jquery__", $linesCounter);
         }
     }
 }
