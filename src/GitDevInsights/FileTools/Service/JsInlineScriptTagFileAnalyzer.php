@@ -21,11 +21,13 @@ final class JsInlineScriptTagFileAnalyzer {
             return 0;
         }
 
-        // Vorher mit stripos prüfen, ob der String überhaupt vorkommt
+        if (stripos($fileContents, '<script') === false) {
+            return 0;
+        }
 
         $totalLineCount = 0;
         $pattern = '/<script[^>]*>(.*?)<\/script>/is';
-// https://github.com/complex-gmbh/php-clx-symplify/blob/cff30c43e41e2c2d23ab8a3c9150fb78525a43c0/packages/phpstan-rules/src/Rules/NoJavascriptInStringRule.php#L35-L38
+
         $matches = [];
         preg_match_all($pattern, $fileContents, $matches);
 
