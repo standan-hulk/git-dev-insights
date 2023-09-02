@@ -37,9 +37,9 @@ class AnalysisResult
         ];
 
 
-    #    foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
-    #        $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
-    #    }
+        foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
+        }
 
         foreach ($this->languageAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-global-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
