@@ -89,7 +89,7 @@ class CodeDistributionFileExtensionAnalyzer {
         }
     }
 
-    private function getDeeperInsights(string $fileName, $fileExtension): void {
+    private function getDeeperInsights(string $fileName, string $fileExtension): void {
         if (JsInlineScriptTagFileAnalyzer::isAllowedToScan($fileExtension)) {
             $jsInlineScriptTagFileAnalyzer = new JsInlineScriptTagFileAnalyzer($fileName);
             $linesCounter = $jsInlineScriptTagFileAnalyzer->countInlineScriptLines();

@@ -35,6 +35,12 @@ final class JsInlineScriptTagFileAnalyzer {
         if ($matches[1] !== []) {
             foreach ($matches[1] as $scriptContent) {
                 $lines = preg_split("/\r\n|\r|\n/", $scriptContent);
+
+                if($lines === false) {
+                    $totalLineCount += 0;
+                    continue;
+                }
+
                 $lineCount = count($lines);
                 $totalLineCount += $lineCount;
             }

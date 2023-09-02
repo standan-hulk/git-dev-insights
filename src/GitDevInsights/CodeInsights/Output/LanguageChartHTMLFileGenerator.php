@@ -14,7 +14,7 @@ class LanguageChartHTMLFileGenerator
         $this->chartTitle = $chartTitle;
     }
 
-    public function renderChartOutput()
+    public function renderChartOutput(): string
     {
         // Extract dates and labels
         $dates = array_keys(array_reverse($this->jsonData['language-global-data']));
@@ -116,7 +116,7 @@ class LanguageChartHTMLFileGenerator
         return $html;
     }
 
-    public function writeChartOutputToFile($fileName) : void
+    public function writeChartOutputToFile(string $fileName) : void
     {
         $html = $this->renderChartOutput();
         file_put_contents($fileName, $html);

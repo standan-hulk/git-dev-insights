@@ -1,2 +1,16 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
