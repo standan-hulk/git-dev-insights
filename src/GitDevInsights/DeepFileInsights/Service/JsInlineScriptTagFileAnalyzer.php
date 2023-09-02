@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileTools\Service;
+namespace GitDevInsights\DeepFileInsights\Service;
 
 final class JsInlineScriptTagFileAnalyzer {
     CONST SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
