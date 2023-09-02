@@ -21,6 +21,7 @@ final class JsInlineScriptTagFileAnalyzer {
             return 0;
         }
 
+        // performance boost: only continue, if a script tag is found
         if (stripos($fileContents, '<script') === false) {
             return 0;
         }
