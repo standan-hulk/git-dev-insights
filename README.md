@@ -22,7 +22,7 @@ The programming languages can be freely configured based on their file extension
 
 1. Generate config file in `project-configs/projectname.yaml`.
 2. Create an `analyse-yourproject.sh` with your project config file. (see examples)
-3. Run `sh analyse.sh` 
+3. Run `sh analyse-yourproject.sh` 
 
 # example graph
 ![Graph Example](https://raw.githubusercontent.com/standan-hulk/git-dev-insights/master/files/graph-example.png)
