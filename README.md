@@ -4,25 +4,22 @@
 The tool generates statistics over a customizable time period from your Git repository, providing insights into used programming languages and trends from the past.
 The programming languages can be freely configured based on their file extensions.
 
-### Setup
-`composer install`
-
-
+## Setup
+Run `composer install`
 
 ### PHPStan
 
-#### 1. run phpstan
-`composer phpstan`
+#### 1. phpstan static code analysis
+Run `composer phpstan`
 
 #### 2. generate baseline
-`composer phpstan-baseline`
+Run `composer phpstan-baseline`
 
-
-# Tool Usage
+## Tool Usage
 
 1. Generate config file in `project-configs/projectname.yaml`.
 2. Create an `analyse-yourproject.sh` with your project config file. (see examples)
 3. Run `sh analyse-yourproject.sh` 
 
-# example graph
+## example graph
 ![Graph Example](https://raw.githubusercontent.com/standan-hulk/git-dev-insights/master/files/graph-example.png)
