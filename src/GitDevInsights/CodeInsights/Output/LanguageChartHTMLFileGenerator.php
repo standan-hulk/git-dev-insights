@@ -66,7 +66,7 @@ class LanguageChartHTMLFileGenerator
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>'.$this->chartTitle.' - Programmiersprachen Trendanalyse</h1>
+<h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
 <h2>Verwendung der Programmiersprachen nach Anzahl Codezeilen</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
     <canvas id="trend_chart" width="" height=""></canvas>
