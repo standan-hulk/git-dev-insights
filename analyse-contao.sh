@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php analyse.php --config project-configs/contao.yaml --outputPath source-repo/data/contao
+php analyse.php --config project-configs/contao.yaml --weeks 150
