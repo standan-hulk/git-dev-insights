@@ -29,8 +29,3 @@ parameters:
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: src/GitDevInsights/FileTools/Service/JsInlineScriptTagFileAnalyzer.php
