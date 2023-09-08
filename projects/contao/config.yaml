@@ -3,5 +3,5 @@
 
 project_name: Contao
 repository_url: https://github.com/contao/contao.git
-checkout_path: source-repo/data/contao
-analyse_result_path: source-repo/generated-stats/contao
+checkout_path: insights/checkout/contao
+analyse_result_path: insights/generated/contao
