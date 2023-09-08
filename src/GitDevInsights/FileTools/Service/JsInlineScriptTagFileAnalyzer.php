@@ -21,7 +21,7 @@ final class JsInlineScriptTagFileAnalyzer {
             return 0;
         }
 
-        // Vorher mit stripos prüfen, ob der String überhaupt vorkommt
+        // TODO: Use stripos to check, if the string exists
 
         $totalLineCount = 0;
         $pattern = '/<script[^>]*>(.*?)<\/script>/is';
