@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php analyse.php --config project-configs/phpmyadmin.yaml --outputPath source-repo/generated-stats/phpmyadmin
+php analyse.php --config project-configs/phpmyadmin.yaml --weeks 150

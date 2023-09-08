@@ -21,9 +21,9 @@ function calculateProgress($currentPosition, $total) {
 if (isset($argv[1]) && $argv[1] === '--config') {
     $projectConfigFile = $argv[2];
 
-    $jsonOutputPath = 'source-repo/generated-stats/'.time();
-    if (isset($argv[3]) && $argv[3] === '--outputPath') {
-        $jsonOutputPath = $argv[4];
+    $weeksOfAnalyse = 64;
+    if (isset($argv[3]) && $argv[3] === '--weeks') {
+        $weeksOfAnalyse = (int)$argv[4];
     }
 
     $projectConfigDataProvider = new ProjectConfigDataProvider($projectConfigFile);
@@ -41,9 +41,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    $totalWeeks = 150;
-
-    for($i = 0; $i < $totalWeeks; $i++) {
+    for($i = 0; $i < $weeksOfAnalyse; $i++) {
         $codeInsightsService->analyse($tsChartTime);
 
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
@@ -53,7 +51,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
         $tsChartTime = $tsChartTime - $weekInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
 
-        echo calculateProgress($i, $totalWeeks) . "\n";
+        echo calculateProgress($i, $weeksOfAnalyse) . "\n";
     }
 
     $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
