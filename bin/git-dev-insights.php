@@ -69,5 +69,5 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {
-    echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
+    echo "Usage: php git-dev-insights.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }
