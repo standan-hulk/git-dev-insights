@@ -17,7 +17,7 @@ Run `composer phpstan-baseline`
 
 ## Tool Usage
 
-1. Copy a config folder in `projects/` and name it for your git repo, e.g. `/projects/your-project`
+1. Copy a config folder in `examples/` and name it for your git repo, e.g. `/examples/your-project`
 2. Setup `analyse.sh` in your project folder.
 3. Setup `config.yaml` in your project folder.
 4. Run `sh projects/yourproject/analyse.sh` 
