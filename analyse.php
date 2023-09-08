@@ -8,7 +8,8 @@ use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 
 require_once('vendor/autoload.php');
 
-function calculateProgress($currentPosition, $total) {
+function calculateProgress($currentPosition, $total): string
+{
     if ($total <= 0) {
         return '0%';
     }
