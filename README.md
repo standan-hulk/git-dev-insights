@@ -19,7 +19,7 @@ Run `composer phpstan-baseline`
 
 1. Copy a config folder in `projects/` and name it for your git repo, e.g. `/projects/your-project`
 2. Setup `analyse.sh` in your project folder.
-3. Setup `config.yaml` in your project.
+3. Setup `config.yaml` in your project folder.
 4. Run `sh projects/yourproject/analyse.sh` 
 
 ## example graph
