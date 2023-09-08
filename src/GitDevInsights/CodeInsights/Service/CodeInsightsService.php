@@ -13,7 +13,7 @@ use GitDevInsights\CodeInsights\Results\AnalysisResult;
 class CodeInsightsService {
     private CONST DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG = 'config/code-insights-languages.yaml';
 
-    private CONST DATA_PROVIDER_INSIGHTS_FOCUS_CONFIG = 'config/code-insights-fe-be.yaml';
+    private CONST DATA_PROVIDER_INSIGHTS_FOCUS_CONFIG = 'config/code-insights-stack-focus.yaml';
 
     private MappingLanguageDataProvider $languageDataProvider;
 
