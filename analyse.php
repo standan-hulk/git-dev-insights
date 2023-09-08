@@ -6,7 +6,7 @@ use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
 use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageChartService;
-use GitDevInsights\CodeInsights\Service\GeneratorLanguageFocusChartService;
+use GitDevInsights\CodeInsights\Service\GeneratorLanguageStackFocusChartService;
 
 require_once('vendor/autoload.php');
 
@@ -64,7 +64,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $languageChartGenerator = new GeneratorLanguageChartService($analysisResult, $projectConfigDataProvider);
     $languageChartGenerator->generateOutputFile();;
 
-    $focusChartGenerator = new GeneratorLanguageFocusChartService($analysisResult, $projectConfigDataProvider);
+    $focusChartGenerator = new GeneratorLanguageStackFocusChartService($analysisResult, $projectConfigDataProvider);
     $focusChartGenerator->generateOutputFile();;
 
     shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));

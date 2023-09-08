@@ -4,13 +4,12 @@
 namespace GitDevInsights\CodeInsights\Service;
 
 use GitDevInsights\CodeInsights\Output\FocusChartHTMLFileGenerator;
-use GitDevInsights\CodeInsights\Output\LanguageChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
 
-class GeneratorLanguageFocusChartService
+class GeneratorLanguageStackFocusChartService
 {
-    private const CHART_FILENAME = 'chart-language-focus.html';
+    private const CHART_FILENAME = 'chart-language-stack-focus.html';
 
     private AnalysisResult $analysisResult;
 
