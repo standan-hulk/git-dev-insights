@@ -1,3 +1,6 @@
+# Example config to show how the tool works
+# We will inspect the redaxo repository here
+
 project_name: Redaxo
 repository_url: https://github.com/redaxo/redaxo.git
 checkout_path: source-repo/data/redaxo
