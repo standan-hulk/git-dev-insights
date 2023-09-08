@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php analyse.php --config projects/contao/config.yaml --weeks 150
+php bin/git-dev-insights --config projects/contao/config.yaml --weeks 150
