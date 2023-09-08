@@ -1,3 +1,4 @@
 /vendor/
 /.idea/
-/source-repo/
+/insights/generated/
+/insights/checkout/
