@@ -1,5 +1,6 @@
 <?php
 
+use GitDevInsights\CodeInsights\Output\FocusChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Output\LanguageChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
@@ -58,11 +59,16 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
 
     $jsonData = $analysisResult->__toJsonData();
+
     $htmlOutput = new LanguageChartHTMLFileGenerator($jsonData, $projectConfigDataProvider->projectName);
-
     $html = $htmlOutput->renderChartOutput();
-
     $fileName = $projectConfigDataProvider->analyseResultPath.'/chart.html';
+    $htmlOutput->writeChartOutputToFile($fileName);
+
+
+    $htmlOutput = new FocusChartHTMLFileGenerator($jsonData, $projectConfigDataProvider->projectName);
+    $html = $htmlOutput->renderChartOutput();
+    $fileName = $projectConfigDataProvider->analyseResultPath.'/focus-chart.html';
     $htmlOutput->writeChartOutputToFile($fileName);
 
     shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));

@@ -1,0 +1,12 @@
+Backend:
+  - PHP
+  - SQL
+  - YAML
+
+Frontend:
+  - HTML
+  - Less
+  - Sass
+  - CSS
+  - JavaScript [JS FILES] # Inline JS is not necessary here, because it is already included in JS FILES
+  - TypeScript

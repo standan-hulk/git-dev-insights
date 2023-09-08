@@ -1,0 +1,4 @@
+project_name: Redaxo
+repository_url: https://github.com/redaxo/redaxo.git
+checkout_path: source-repo/data/redaxo
+analyse_result_path: source-repo/generated-stats/redaxo

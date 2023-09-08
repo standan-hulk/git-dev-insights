@@ -3,7 +3,6 @@ namespace GitDevInsights\CodeInsights\Results;
 
 class AnalysisResult
 {
-
     private CONST DATA_PROVIDER_INSIGHTS_OUTPUT_FILE = 'code-insights.json';
 
     /**
@@ -16,10 +15,16 @@ class AnalysisResult
      */
     private array $languageAnalysisResult = [];
 
-    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult): void
+    /**
+     * @var LanguageFocusAnalysisResult[]
+     */
+    private array $languageFocusAnalysisResult = [];
+
+    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult): void
     {
         $this->fileExtensionAnalysisResult[$resultTimestamp] = $fileExtensionAnalysisResult;
         $this->languageAnalysisResult[$resultTimestamp] = $languageAnalysisResult;
+        $this->languageFocusAnalysisResult[$resultTimestamp] = $languageFocusAnalysisResult;
     }
 
     public function __toJson(): string {
@@ -37,9 +42,9 @@ class AnalysisResult
     public function __toJsonData(): array {
         $analysisData = [
             'language-fileext-data' => [],
-            'language-global-data' => []
+            'language-global-data' => [],
+            'language-focus-data' => []
         ];
-
 
         foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-fileext-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
@@ -47,6 +52,10 @@ class AnalysisResult
 
         foreach ($this->languageAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-global-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
+        }
+
+        foreach ($this->languageFocusAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisData['language-focus-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
         }
 
         return $analysisData;
