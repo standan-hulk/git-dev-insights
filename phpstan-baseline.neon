@@ -1,6 +1,21 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:writeChartOutputToFile\\(\\) has parameter \\$fileName with no type specified\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
@@ -14,3 +29,8 @@ parameters:
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: src/GitDevInsights/FileTools/Service/JsInlineScriptTagFileAnalyzer.php
