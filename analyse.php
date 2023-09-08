@@ -1,5 +1,6 @@
 <?php
 
+use GitDevInsights\CodeInsights\Output\FocusChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Output\LanguageChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
@@ -40,7 +41,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    $totalWeeks = 150;
+    $totalWeeks = 100;
 
     for($i = 0; $i < $totalWeeks; $i++) {
         $codeInsightsService->analyse($tsChartTime);
@@ -49,7 +50,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
         $output = shell_exec("cd ".$projectConfigDataProvider->checkoutPath ." && git checkout ".$commitHash);
 
-        $tsChartTime = $tsChartTime - $weekInSeconds;
+        $tsChartTime = $tsChartTime - $monthInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
 
         echo calculateProgress($i, $totalWeeks) . "\n";
@@ -58,14 +59,20 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
 
     $jsonData = $analysisResult->__toJsonData();
+
     $htmlOutput = new LanguageChartHTMLFileGenerator($jsonData, $projectConfigDataProvider->projectName);
-
     $html = $htmlOutput->renderChartOutput();
-
     $fileName = $projectConfigDataProvider->analyseResultPath.'/chart.html';
     $htmlOutput->writeChartOutputToFile($fileName);
 
-    shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
+
+    $htmlOutput = new FocusChartHTMLFileGenerator($jsonData, $projectConfigDataProvider->projectName);
+    $html = $htmlOutput->renderChartOutput();
+    $fileName = $projectConfigDataProvider->analyseResultPath.'/focus-chart.html';
+    $htmlOutput->writeChartOutputToFile($fileName);
+
+
+    #   shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {
     echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }
