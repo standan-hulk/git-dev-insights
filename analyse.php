@@ -41,7 +41,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    $totalWeeks = 100;
+    $totalWeeks = 150;
 
     for($i = 0; $i < $totalWeeks; $i++) {
         $codeInsightsService->analyse($tsChartTime);
@@ -50,7 +50,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
         $output = shell_exec("cd ".$projectConfigDataProvider->checkoutPath ." && git checkout ".$commitHash);
 
-        $tsChartTime = $tsChartTime - $monthInSeconds;
+        $tsChartTime = $tsChartTime - $weekInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
 
         echo calculateProgress($i, $totalWeeks) . "\n";
@@ -71,8 +71,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $fileName = $projectConfigDataProvider->analyseResultPath.'/focus-chart.html';
     $htmlOutput->writeChartOutputToFile($fileName);
 
-
-    #   shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
+    shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {
     echo "Usage: php analyse.php --config [project config file] [--outputPath [path of the generated insights]]\n";
 }

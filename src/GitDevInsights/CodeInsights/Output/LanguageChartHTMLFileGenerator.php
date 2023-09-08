@@ -14,7 +14,7 @@ class LanguageChartHTMLFileGenerator
         $this->chartTitle = $chartTitle;
     }
 
-    public function renderChartOutput()
+    public function renderChartOutput(): string
     {
         // Extract dates and labels
         $dates = array_keys(array_reverse($this->jsonData['language-global-data']));
@@ -66,8 +66,8 @@ class LanguageChartHTMLFileGenerator
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>'.$this->chartTitle.' - Programmiersprachen Trendanalyse</h1>
-<h2>Verwendung der Programmiersprachen nach Anzahl Codezeilen</h2>
+<h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
+<h2>Usage of Programming Languages by Number of Lines of Code</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
     <canvas id="trend_chart" width="" height=""></canvas>
 </div>
@@ -116,7 +116,7 @@ class LanguageChartHTMLFileGenerator
         return $html;
     }
 
-    public function writeChartOutputToFile($fileName) : void
+    public function writeChartOutputToFile(string $fileName) : void
     {
         $html = $this->renderChartOutput();
         file_put_contents($fileName, $html);

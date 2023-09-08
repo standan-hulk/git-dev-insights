@@ -1,0 +1,7 @@
+# Example config to show how the tool works
+# We will inspect the contao repository here
+
+project_name: Contao
+repository_url: https://github.com/contao/contao.git
+checkout_path: source-repo/data/contao
+analyse_result_path: source-repo/generated-stats/contao

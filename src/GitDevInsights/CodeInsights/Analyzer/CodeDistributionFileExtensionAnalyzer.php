@@ -5,11 +5,11 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
-use GitDevInsights\FileTools\Service\JsFileJqueryUsageFileAnalyzer;
 use GitDevInsights\FileTools\Service\JsFileUsageFileAnalyzer;
-use GitDevInsights\FileTools\Service\JsInlineScriptTagFileAnalyzer;
+use GitDevInsights\DeepFileInsights\Service\JsInlineScriptTagFileAnalyzer;
 
-class CodeDistributionFileExtensionAnalyzer {
+class CodeDistributionFileExtensionAnalyzer
+{
     private MappingLanguageDataProvider $mappingDataProvider;
 
     /**
@@ -20,7 +20,8 @@ class CodeDistributionFileExtensionAnalyzer {
     private FileExtensionAnalysisResult $fileExtensionAnalysisResult;
     private string $repositoryPath;
 
-    public function __construct(MappingLanguageDataProvider $mappingDataProvider, string $repositoryPath) {
+    public function __construct(MappingLanguageDataProvider $mappingDataProvider, string $repositoryPath)
+    {
         $this->mappingDataProvider = $mappingDataProvider;
         $this->supportedExtensions = $this->initSupportedExtensions();
         $this->repositoryPath = $repositoryPath;
@@ -31,7 +32,8 @@ class CodeDistributionFileExtensionAnalyzer {
     /**
      * @return array<string>
      */
-    private function initSupportedExtensions(): array {
+    private function initSupportedExtensions(): array
+    {
         $dataProviderFileExtensions = $this->mappingDataProvider->getFileExtensions();
 
         $result = [];
@@ -42,20 +44,23 @@ class CodeDistributionFileExtensionAnalyzer {
         return $result;
     }
 
-    private function initExtensionLines(): void {
+    private function initExtensionLines(): void
+    {
         $dataProviderFileExtensions = $this->mappingDataProvider->getFileExtensions();
         foreach ($dataProviderFileExtensions as $fileExtension) {
             $this->fileExtensionAnalysisResult->addFileExtensionLines($fileExtension->name, 0);
         }
     }
 
-    public function analyzeRepository(): FileExtensionAnalysisResult {
+    public function analyzeRepository(): FileExtensionAnalysisResult
+    {
         $this->processDirectory($this->repositoryPath);
 
         return $this->fileExtensionAnalysisResult;
     }
 
-    private function processDirectory(string $path) : void {
+    private function processDirectory(string $path): void
+    {
         $dir = new DirectoryIterator($path);
 
         foreach ($dir as $fileInfo) {
@@ -91,18 +96,12 @@ class CodeDistributionFileExtensionAnalyzer {
         }
     }
 
-    private function getDeeperInsights(string $fileName, $fileExtension): void {
+    private function getDeeperInsights(string $fileName, string $fileExtension): void
+    {
         if (JsInlineScriptTagFileAnalyzer::isAllowedToScan($fileExtension)) {
             $jsInlineScriptTagFileAnalyzer = new JsInlineScriptTagFileAnalyzer($fileName);
             $linesCounter = $jsInlineScriptTagFileAnalyzer->countInlineScriptLines();
             $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_js__", $linesCounter);
         }
-
-        if (JsFileJqueryUsageFileAnalyzer::isAllowedToScan($fileExtension)) {
-            $jsJqueryUsageFileAnalyzer = new JsFileJqueryUsageFileAnalyzer($fileName);
-            $linesCounter = $jsJqueryUsageFileAnalyzer->countJqueryLines();
-            $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_jquery__", $linesCounter);
-        }
     }
 }
-

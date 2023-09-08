@@ -3,7 +3,6 @@ namespace GitDevInsights\CodeInsights\Results;
 
 class AnalysisResult
 {
-
     private CONST DATA_PROVIDER_INSIGHTS_OUTPUT_FILE = 'code-insights.json';
 
     /**
@@ -31,7 +30,13 @@ class AnalysisResult
     public function __toJson(): string {
         $analysisData = $this->__toJsonData();
 
-        return json_encode($analysisData, JSON_PRETTY_PRINT);
+        $result = json_encode($analysisData, JSON_PRETTY_PRINT);;
+
+        if ($result === false) {
+            return '';
+        }
+
+        return $result;
     }
 
     public function __toJsonData(): array {
