@@ -14,7 +14,7 @@ class FocusChartHTMLFileGenerator
         $this->chartTitle = $chartTitle;
     }
 
-    public function renderChartOutput()
+    public function renderChartOutput(): void
     {
         // Extract dates and labels
         $dates = array_keys(array_reverse($this->jsonData['language-focus-data']));

@@ -14,7 +14,7 @@ class MappingLanguageFocusDataProvider {
     private array $programmingFocus = [];
 
     /**
-     * @var array<string, ProgrammingLanguage>
+     * @var array<string, ProgrammingFocus>
      */
     private array $programmingLanguages = [];
 
@@ -29,7 +29,7 @@ class MappingLanguageFocusDataProvider {
                 $programmingLanguage = new ProgrammingLanguage($programmingLanguageName);
                 $programmingFocus->addLanguage($programmingLanguage);
 
-                $this->programmingLanguages[(string)strtolower($programmingLanguageName)] = $programmingFocus;
+                $this->programmingLanguages[strtolower($programmingLanguageName)] = $programmingFocus;
             }
         }
     }
@@ -46,7 +46,7 @@ class MappingLanguageFocusDataProvider {
     }
 
     /**
-     * @return array<string, ProgrammingLanguage>
+     * @return array<string, ProgrammingFocus>
      */
     public function getProgrammingLanguages(): array {
         return $this->programmingLanguages;
