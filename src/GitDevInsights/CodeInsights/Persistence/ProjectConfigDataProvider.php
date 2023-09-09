@@ -17,10 +17,10 @@ class ProjectConfigDataProvider {
     public function __construct(string $configFile) {
         $configData = $this->loadConfig($configFile);
 
-        $this->repositoryUrl = $configData['repository_url'] ?? '';
-        $this->checkoutPath = $configData['checkout_path'] ?? '';
-        $this->analyseResultPath = $configData['analyse_result_path'] ?? '';
-        $this->projectName = $configData['project_name'] ?? '';
+        $this->repositoryUrl = $configData['project']['repository_url'] ?? '';
+        $this->checkoutPath = $configData['project']['checkout_path'] ?? '';
+        $this->analyseResultPath = $configData['project']['analyse_result_path'] ?? '';
+        $this->projectName = $configData['project']['project_name'] ?? '';
     }
 
     /**
