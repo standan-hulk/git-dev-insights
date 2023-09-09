@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php bin/git-dev-insights --config examples/git-dev-insights/config.yaml --weeks 5
+php bin/git-dev-insights --config examples/git-dev-insights/config.yaml
