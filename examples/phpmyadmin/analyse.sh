@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php bin/git-dev-insights --config projects/phpmyadmin/config.yaml --weeks 150
+php bin/git-dev-insights --config examples/phpmyadmin/config.yaml --weeks 150

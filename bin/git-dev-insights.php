@@ -1,10 +1,9 @@
 <?php
 
-use GitDevInsights\CodeInsights\Output\FocusChartHTMLFileGenerator;
-use GitDevInsights\CodeInsights\Output\LanguageChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
 use GitDevInsights\CodeInsights\Service\CodeInsightsService;
+use GitDevInsights\CodeInsights\Service\GeneratorFileExtensionChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageStackFocusChartService;
 
@@ -61,8 +60,11 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $jsonData = $analysisResult->__toJsonData();
 
+    $languageChartGenerator = new GeneratorFileExtensionChartService($analysisResult, $projectConfigDataProvider);
+    $languageChartGenerator->generateOutputFile();
+
     $languageChartGenerator = new GeneratorLanguageChartService($analysisResult, $projectConfigDataProvider);
-    $languageChartGenerator->generateOutputFile();;
+    $languageChartGenerator->generateOutputFile();
 
     $focusChartGenerator = new GeneratorLanguageStackFocusChartService($analysisResult, $projectConfigDataProvider);
     $focusChartGenerator->generateOutputFile();;
