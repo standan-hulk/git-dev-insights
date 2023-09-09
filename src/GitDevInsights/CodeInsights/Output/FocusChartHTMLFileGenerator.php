@@ -12,18 +12,58 @@ class FocusChartHTMLFileGenerator
     {
         $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
+        $this->jsonData['language-focus-data'] = $this->filterDataByValuesSet();
+    }
+
+    private function getValuesSetForOutput(): array {
+        $dates = $this->jsonData['language-focus-data'];
+
+        $valuesSet = [];
+
+        if ($dates !== []) {
+            foreach ($dates as $values) {
+                foreach ($values as $key => $value) {
+                    if ((int)$value > 0) {
+                        $valuesSet[$key] = 1;
+                    }
+                }
+            }
+        }
+        return $valuesSet;
+    }
+
+    private function filterDataByValuesSet(): array {
+        $filteredData = [];
+        $valuesSet = $this->getValuesSetForOutput();
+
+        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
+
+        foreach ($this->jsonData['language-focus-data'] as $date => $values) {
+            $filteredValues = $keyTemplate;
+
+            foreach ($values as $key => $value) {
+                if (isset($valuesSet[$key]) && (int)$value > 0) {
+                    $filteredValues[$key] = $value;
+                }
+            }
+
+            $filteredData[$date] = $filteredValues;
+        }
+
+        return $filteredData;
     }
 
     public function renderChartOutput(): string
     {
-        // Extract dates and labels
         $dates = array_keys(array_reverse($this->jsonData['language-focus-data']));
         $labels = array_keys($this->jsonData['language-focus-data'][$dates[0]]);
 
         // Generate datasets for each label
         $datasets = [];
         foreach ($labels as $label) {
+
             $data = [];
+
             foreach ($dates as $date) {
                 $data[] = $this->jsonData['language-focus-data'][$date][$label];
             }
@@ -67,7 +107,7 @@ class FocusChartHTMLFileGenerator
 </head>
 <body>
 <h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
-<h2>Backend / Frontend usage bye programming languagees (Lines of Code)</h2>
+<h2>Backend / Frontend usage bye programming languages (Lines of Code)</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
     <canvas id="trend_chart" width="" height=""></canvas>
 </div>

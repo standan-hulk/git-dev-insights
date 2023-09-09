@@ -1,7 +1,6 @@
 # Example config to show how the tool works
 # We will inspect the git dev insights repository here
 
-
 project:
   project_name: git dev insights
   repository_url: https://github.com/standan-hulk/git-dev-insights.git

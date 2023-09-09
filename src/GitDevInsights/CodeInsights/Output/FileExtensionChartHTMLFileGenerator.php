@@ -12,6 +12,45 @@ class FileExtensionChartHTMLFileGenerator
     {
         $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
+        $this->jsonData['language-fileext-data'] = $this->filterDataByValuesSet();
+    }
+
+    private function getValuesSetForOutput(): array {
+        $dates = $this->jsonData['language-fileext-data'];
+
+        $valuesSet = [];
+
+        if ($dates !== []) {
+            foreach ($dates as $values) {
+                foreach ($values as $key => $value) {
+                    if ((int)$value > 0) {
+                        $valuesSet[$key] = 1;
+                    }
+                }
+            }
+        }
+        return $valuesSet;
+    }
+
+    private function filterDataByValuesSet(): array {
+        $filteredData = [];
+        $valuesSet = $this->getValuesSetForOutput();
+
+        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
+
+        foreach ($this->jsonData['language-fileext-data'] as $date => $values) {
+            $filteredValues = $keyTemplate;
+
+            foreach ($values as $key => $value) {
+                if (isset($valuesSet[$key]) && (int)$value > 0) {
+                    $filteredValues[$key] = $value;
+                }
+            }
+
+            $filteredData[$date] = $filteredValues;
+        }
+
+        return $filteredData;
     }
 
     public function renderChartOutput(): string
