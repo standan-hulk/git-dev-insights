@@ -23,11 +23,6 @@ function calculateProgress($currentPosition, $total): string
 if (isset($argv[1]) && $argv[1] === '--config') {
     $projectConfigFile = $argv[2];
 
-    $weeksOfAnalyse = 64;
-    if (isset($argv[3]) && $argv[3] === '--weeks') {
-        $weeksOfAnalyse = (int)$argv[4];
-    }
-
     $projectConfigDataProvider = new ProjectConfigDataProvider($projectConfigFile);
     $analysisResult = new AnalysisResult();
 
@@ -43,7 +38,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
 
-    for($i = 0; $i < $weeksOfAnalyse; $i++) {
+    for($i = 0; $i < $projectConfigDataProvider->timeRangeWeeks; $i++) {
         $codeInsightsService->analyse($tsChartTime);
 
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
