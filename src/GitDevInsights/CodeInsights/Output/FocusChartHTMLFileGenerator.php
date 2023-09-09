@@ -12,11 +12,50 @@ class FocusChartHTMLFileGenerator
     {
         $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
+        $this->jsonData['language-focus-data'] = $this->filterDataByValuesSet();
+    }
+
+    private function getValuesSetForOutput(): array {
+        $dates = $this->jsonData['language-focus-data'];
+
+        $valuesSet = [];
+
+        if ($dates !== []) {
+            foreach ($dates as $values) {
+                foreach ($values as $key => $value) {
+                    if ((int)$value > 0) {
+                        $valuesSet[$key] = 1;
+                    }
+                }
+            }
+        }
+        return $valuesSet;
+    }
+
+    private function filterDataByValuesSet(): array {
+        $filteredData = [];
+
+        $valuesSet = $this->getValuesSetForOutput();
+
+        foreach ($this->jsonData['language-focus-data'] as $date => $values) {
+            $filteredValues = [];
+
+            foreach ($values as $key => $value) {
+                if (isset($valuesSet[$key]) && (int)$value > 0) {
+                    $filteredValues[$key] = $value;
+                }
+            }
+
+            if (!empty($filteredValues)) {
+                $filteredData[$date] = $filteredValues;
+            }
+        }
+
+        return $filteredData;
     }
 
     public function renderChartOutput(): string
     {
-        // Extract dates and labels
         $dates = array_keys(array_reverse($this->jsonData['language-focus-data']));
         $labels = array_keys($this->jsonData['language-focus-data'][$dates[0]]);
 
@@ -24,6 +63,7 @@ class FocusChartHTMLFileGenerator
         $datasets = [];
         foreach ($labels as $label) {
             $data = [];
+
             foreach ($dates as $date) {
                 $data[] = $this->jsonData['language-focus-data'][$date][$label];
             }
