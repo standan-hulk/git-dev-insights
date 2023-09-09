@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php analyse.php --config projects/redaxo/config.yaml --weeks 150
+php analyse.php --config examples/redaxo/config.yaml --weeks 150
