@@ -6,3 +6,6 @@ project:
   repository_url: https://github.com/phpmyadmin/phpmyadmin.git
   checkout_path: insights/checkout/phpmyadmin
   analyse_result_path: insights/generated/phpmyadmin
+
+stats:
+  time_range_weeks: 150

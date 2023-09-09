@@ -14,6 +14,8 @@ class ProjectConfigDataProvider {
 
     public string $projectName;
 
+    public int $timeRangeWeeks;
+
     public function __construct(string $configFile) {
         $configData = $this->loadConfig($configFile);
 
@@ -21,6 +23,8 @@ class ProjectConfigDataProvider {
         $this->checkoutPath = $configData['project']['checkout_path'] ?? '';
         $this->analyseResultPath = $configData['project']['analyse_result_path'] ?? '';
         $this->projectName = $configData['project']['project_name'] ?? '';
+
+        $this->timeRangeWeeks = (int)$configData['stats']['time_range_weeks'] ?? 10;
     }
 
     /**

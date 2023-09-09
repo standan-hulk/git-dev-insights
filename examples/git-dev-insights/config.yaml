@@ -6,3 +6,6 @@ project:
   repository_url: https://github.com/standan-hulk/git-dev-insights.git
   checkout_path: insights/checkout/git-dev-insights
   analyse_result_path: insights/generated/git-dev-insights
+
+stats:
+  time_range_weeks: 5

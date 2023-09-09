@@ -6,3 +6,6 @@ project:
   repository_url: https://github.com/redaxo/redaxo.git
   checkout_path: insights/checkout/redaxo
   analyse_result_path: insights/generated/redaxo
+
+stats:
+  time_range_weeks: 150
