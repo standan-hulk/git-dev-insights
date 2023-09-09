@@ -66,7 +66,11 @@ class LanguageChartHTMLFileGenerator
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                $data[] = $this->jsonData['language-global-data'][$date][$label];
+                if(isset($this->jsonData['language-global-data'][$date][$label])) {
+                    $data[] = $this->jsonData['language-global-data'][$date][$label];
+                } else {
+                    $data[] = 0;
+                }
             }
 
             $datasets[] = [

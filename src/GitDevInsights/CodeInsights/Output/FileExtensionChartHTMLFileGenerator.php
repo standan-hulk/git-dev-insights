@@ -65,7 +65,11 @@ class FileExtensionChartHTMLFileGenerator
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                $data[] = $this->jsonData['language-fileext-data'][$date][$label];
+                if(isset($this->jsonData['language-fileext-data'][$date][$label])) {
+                    $data[] = $this->jsonData['language-fileext-data'][$date][$label];
+                } else {
+                    $data[] = 0;
+                }
             }
 
             $datasets[] = [
