@@ -48,7 +48,7 @@ if (isset($argv[1]) && $argv[1] === '--config') {
         $tsChartTime = $tsChartTime - $weekInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
 
-        echo calculateProgress($i, $weeksOfAnalyse) . "\n";
+        echo calculateProgress($i, $projectConfigDataProvider->timeRangeWeeks) . "\n";
     }
 
     $analysisResult->outputToJsonFile($projectConfigDataProvider->analyseResultPath);
