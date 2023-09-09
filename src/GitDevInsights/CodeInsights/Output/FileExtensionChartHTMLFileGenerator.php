@@ -34,11 +34,12 @@ class FileExtensionChartHTMLFileGenerator
 
     private function filterDataByValuesSet(): array {
         $filteredData = [];
-
         $valuesSet = $this->getValuesSetForOutput();
 
+        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
+
         foreach ($this->jsonData['language-fileext-data'] as $date => $values) {
-            $filteredValues = [];
+            $filteredValues = $keyTemplate;
 
             foreach ($values as $key => $value) {
                 if (isset($valuesSet[$key]) && (int)$value > 0) {
@@ -46,9 +47,7 @@ class FileExtensionChartHTMLFileGenerator
                 }
             }
 
-            if (!empty($filteredValues)) {
-                $filteredData[$date] = $filteredValues;
-            }
+            $filteredData[$date] = $filteredValues;
         }
 
         return $filteredData;
@@ -65,11 +64,7 @@ class FileExtensionChartHTMLFileGenerator
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                if(isset($this->jsonData['language-fileext-data'][$date][$label])) {
-                    $data[] = $this->jsonData['language-fileext-data'][$date][$label];
-                } else {
-                    $data[] = 0;
-                }
+                $data[] = $this->jsonData['language-fileext-data'][$date][$label];
             }
 
             $datasets[] = [

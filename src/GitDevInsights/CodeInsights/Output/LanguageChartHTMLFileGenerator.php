@@ -34,11 +34,12 @@ class LanguageChartHTMLFileGenerator
 
     private function filterDataByValuesSet(): array {
         $filteredData = [];
-
         $valuesSet = $this->getValuesSetForOutput();
 
+        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
+
         foreach ($this->jsonData['language-global-data'] as $date => $values) {
-            $filteredValues = [];
+            $filteredValues = $keyTemplate;
 
             foreach ($values as $key => $value) {
                 if (isset($valuesSet[$key]) && (int)$value > 0) {
@@ -46,14 +47,11 @@ class LanguageChartHTMLFileGenerator
                 }
             }
 
-            if (!empty($filteredValues)) {
-                $filteredData[$date] = $filteredValues;
-            }
+            $filteredData[$date] = $filteredValues;
         }
 
         return $filteredData;
     }
-
 
     public function renderChartOutput(): string
     {
@@ -66,11 +64,7 @@ class LanguageChartHTMLFileGenerator
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                if(isset($this->jsonData['language-global-data'][$date][$label])) {
-                    $data[] = $this->jsonData['language-global-data'][$date][$label];
-                } else {
-                    $data[] = 0;
-                }
+                $data[] = $this->jsonData['language-global-data'][$date][$label];
             }
 
             $datasets[] = [

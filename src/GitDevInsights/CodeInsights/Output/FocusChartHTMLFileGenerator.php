@@ -34,11 +34,12 @@ class FocusChartHTMLFileGenerator
 
     private function filterDataByValuesSet(): array {
         $filteredData = [];
-
         $valuesSet = $this->getValuesSetForOutput();
 
+        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
+
         foreach ($this->jsonData['language-focus-data'] as $date => $values) {
-            $filteredValues = [];
+            $filteredValues = $keyTemplate;
 
             foreach ($values as $key => $value) {
                 if (isset($valuesSet[$key]) && (int)$value > 0) {
@@ -46,9 +47,7 @@ class FocusChartHTMLFileGenerator
                 }
             }
 
-            if (!empty($filteredValues)) {
-                $filteredData[$date] = $filteredValues;
-            }
+            $filteredData[$date] = $filteredValues;
         }
 
         return $filteredData;
@@ -66,11 +65,7 @@ class FocusChartHTMLFileGenerator
             $data = [];
 
             foreach ($dates as $date) {
-                if(isset($this->jsonData['language-focus-data'][$date][$label])) {
-                    $data[] = $this->jsonData['language-focus-data'][$date][$label];
-                } else {
-                    $data[] = 0;
-                }
+                $data[] = $this->jsonData['language-focus-data'][$date][$label];
             }
 
             $datasets[] = [
