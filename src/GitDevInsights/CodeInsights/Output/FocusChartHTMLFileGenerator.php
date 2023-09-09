@@ -107,7 +107,7 @@ class FocusChartHTMLFileGenerator
 </head>
 <body>
 <h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
-<h2>Backend / Frontend usage bye programming languagees (Lines of Code)</h2>
+<h2>Backend / Frontend usage bye programming languages (Lines of Code)</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
     <canvas id="trend_chart" width="" height=""></canvas>
 </div>
