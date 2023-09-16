@@ -22,12 +22,13 @@ jobs:
 
     steps:
       -   name: Checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
 
       -   name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ matrix.php-version }}
+            extensions: gd, intl, pdo_mysql
             coverage: none # disable xdebug, pcov
 
       -   name: Composer install
