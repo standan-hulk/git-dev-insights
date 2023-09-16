@@ -1,4 +1,4 @@
-name: Static Analysis - PHP 8.1, 8.2
+name: Static Analysis - PHP
 
 on:
     push:
@@ -16,9 +16,9 @@ jobs:
             matrix:
                 include:
                     -   os: ubuntu-latest
-                        php-version: '8.1'
+                        php-version: 'PHP 8.1'
                     -   os: ubuntu-latest
-                        php-version: '8.2'
+                        php-version: 'PHP 8.2'
 
         steps:
             -   name: Checkout
