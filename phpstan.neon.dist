@@ -4,5 +4,5 @@ parameters:
 		- src
 	bootstrapFiles:
 		- phpstan-bootstrap.php
-    includes:
-        - phpstan-baseline.neon
+includes:
+    - phpstan-baseline.neon
