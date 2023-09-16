@@ -16,9 +16,9 @@ jobs:
             matrix:
                 include:
                     -   os: ubuntu-latest
-                        php-version: 'PHP 8.1'
+                        php-version: '8.1'
                     -   os: ubuntu-latest
-                        php-version: 'PHP 8.2'
+                        php-version: '8.2'
 
         steps:
             -   name: Checkout
@@ -37,4 +37,4 @@ jobs:
                     composer-options: '--ansi --prefer-dist'
 
             -   name: Run phpstan analysis
-                run: vendor/bin/phpstan analyse --ansi
+                run: vendor/bin/phpstan analyse -c phpstan.neon.dist --ansi
