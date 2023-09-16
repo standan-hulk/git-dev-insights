@@ -1,4 +1,4 @@
-name: PHP Linter
+name: PHP Linter - PHP 8.1
 
 on:
   push:
