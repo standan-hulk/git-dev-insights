@@ -1,4 +1,4 @@
-name: Static Analysis - PHP 8.1, 8.2
+name: Static Analysis
 
 on:
   push:
@@ -15,6 +15,12 @@ jobs:
     strategy:
       matrix:
         include:
+          #-   os: ubuntu-18.04
+          #    php-version: '7.2'
+          -   os: ubuntu-latest
+              php-version: '7.4'
+          -   os: ubuntu-latest
+              php-version: '8.0'
           -   os: ubuntu-latest
               php-version: '8.1'
           -   os: ubuntu-latest
@@ -22,7 +28,7 @@ jobs:
 
     steps:
       -   name: Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v3
 
       -   name: Setup PHP
           uses: shivammathur/setup-php@v2
