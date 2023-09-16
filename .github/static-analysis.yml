@@ -1,4 +1,4 @@
-name: Static Analysis - PHP 8.1, 8.2
+name: Static Analysis
 
 on:
     push:
