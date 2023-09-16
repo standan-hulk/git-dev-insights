@@ -37,4 +37,4 @@ jobs:
                     composer-options: '--ansi --prefer-dist'
 
             -   name: Run phpstan analysis
-                run: vendor/bin/phpstan analyse -c phpstan.neon.dist --ansi
+                run: composer phpstan
