@@ -1,4 +1,4 @@
-name: Static Analysis - PHP 8.1, 8.2
+name: Static Analysis - PHP
 
 on:
     push:
@@ -28,7 +28,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php-version }}
-                    extensions: gd, intl, pdo_mysql
+                    extensions: gd, intl
                     coverage: none # disable xdebug, pcov
 
             -   name: Composer install
@@ -37,4 +37,4 @@ jobs:
                     composer-options: '--ansi --prefer-dist'
 
             -   name: Run phpstan analysis
-                run: vendor/bin/phpstan analyse --ansi
+                run: composer phpstan
