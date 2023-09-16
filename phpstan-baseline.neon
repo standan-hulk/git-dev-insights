@@ -1,0 +1,141 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:writeChartOutputToFile\\(\\) has parameter \\$fileName with no type specified\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 2
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$extension of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguageFileExt constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 2
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingFocus constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strtolower expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\ProjectConfigDataProvider\\:\\:loadConfig\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Offset 'analyse_result_path' on string on left side of \\?\\? does not exist\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Offset 'checkout_path' on string on left side of \\?\\? does not exist\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Offset 'project_name' on string on left side of \\?\\? does not exist\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Offset 'repository_url' on string on left side of \\?\\? does not exist\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Offset 'time_range_weeks' does not exist on string\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
+
+		-
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
