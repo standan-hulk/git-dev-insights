@@ -1,8 +1,24 @@
 parameters:
-	level: 9
-	paths:
-		- src
-	bootstrapFiles:
-		- phpstan-bootstrap.php
+    level: max
+
+    paths:
+        - bin/
+        - src/
+
+    unused_public:
+        methods: true
+        properties: true
+        constants: true
+
+    cognitive_complexity:
+        class: 50
+        function: 13
+
+    type_coverage:
+        return_type: 100
+        param_type: 87
+        property_type: 0
+        print_suggestions: false
+
 includes:
     - phpstan-baseline.neon

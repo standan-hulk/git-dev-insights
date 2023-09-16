@@ -1,6 +1,31 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Function calculateProgress\\(\\) has parameter \\$currentPosition with no type specified\\.$#"
+			count: 1
+			path: bin/git-dev-insights.php
+
+		-
+			message: "#^Function calculateProgress\\(\\) has parameter \\$total with no type specified\\.$#"
+			count: 1
+			path: bin/git-dev-insights.php
+
+		-
+			message: "#^Cognitive complexity for \"GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:processDirectory\\(\\)\" is 14, keep it under 13$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
+
+		-
+			message: "#^Public property \"GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingFocus\\:\\:\\$focus\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Model/ProgrammingFocus.php
+
+		-
+			message: "#^Public property \"GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage\\:\\:\\$fileExtensions\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Model/ProgrammingLanguage.php
+
+		-
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
@@ -81,6 +106,11 @@ parameters:
 			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
 
 		-
+			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:getProgrammingLanguages\\(\\)\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
+
+		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 2
 			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
@@ -97,6 +127,16 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$string of function strtolower expects string, mixed given\\.$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageFocusDataProvider\\:\\:getProgrammingFocus\\(\\)\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
+
+		-
+			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageFocusDataProvider\\:\\:getProgrammingLanguages\\(\\)\" is never used$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
 
@@ -139,3 +179,18 @@ parameters:
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
+
+		-
+			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Results\\\\FileExtensionAnalysisResult\\:\\:getFileExtensionLines\\(\\)\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Results/FileExtensionAnalysisResult.php
+
+		-
+			message: "#^Public property \"GitDevInsights\\\\CodeInsights\\\\Service\\\\CodeInsightsService\\:\\:\\$analysisResult\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/CodeInsights/Service/CodeInsightsService.php
+
+		-
+			message: "#^Public constant \"GitDevInsights\\\\DeepFileInsights\\\\Service\\\\JsInlineScriptTagFileAnalyzer\\:\\:SUPPORTED_FILE_EXTENSIONS\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/DeepFileInsights/Service/JsInlineScriptTagFileAnalyzer.php
