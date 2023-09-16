@@ -4,7 +4,7 @@
 The tool generates statistics over a customizable time period from your Git repository, providing insights into used programming languages and trends from the past.
 The programming languages can be freely configured based on their file extensions.
 
-## Setup
+## Setup:
 Run `composer install`
 
 ### PHPStan
