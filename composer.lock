@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21b8e890884d17a8f76e54ec3bfcc926",
+    "content-hash": "c9b8451bfae92effd3f12d27a68beefb",
     "packages": [
         {
             "name": "symfony/deprecation-contracts",
@@ -699,16 +699,16 @@
         },
         {
             "name": "tomasvotruba/unused-public",
-            "version": "0.3.3",
+            "version": "0.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TomasVotruba/unused-public.git",
-                "reference": "0dd35807ff51fd598b9c7d86f78f78ed9ae8d64a"
+                "reference": "8b603471fe55d1082aa6201471c6b76146c27cdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TomasVotruba/unused-public/zipball/0dd35807ff51fd598b9c7d86f78f78ed9ae8d64a",
-                "reference": "0dd35807ff51fd598b9c7d86f78f78ed9ae8d64a",
+                "url": "https://api.github.com/repos/TomasVotruba/unused-public/zipball/8b603471fe55d1082aa6201471c6b76146c27cdc",
+                "reference": "8b603471fe55d1082aa6201471c6b76146c27cdc",
                 "shasum": ""
             },
             "require": {
@@ -740,7 +740,7 @@
             ],
             "support": {
                 "issues": "https://github.com/TomasVotruba/unused-public/issues",
-                "source": "https://github.com/TomasVotruba/unused-public/tree/0.3.3"
+                "source": "https://github.com/TomasVotruba/unused-public/tree/0.3.5"
             },
             "funding": [
                 {
@@ -752,7 +752,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-08T10:08:44+00:00"
+            "time": "2023-09-21T20:46:14+00:00"
         },
         {
             "name": "webmozart/assert",
