@@ -30,6 +30,8 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     // checkout the repo
     shell_exec('git clone '.$projectConfigDataProvider->repositoryUrl.' '.$projectConfigDataProvider->checkoutPath);
 
+    shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && composer install");
+
     $tsChartTime = strtotime('last Monday');
     $targetDate = date('Y-m-d', $tsChartTime);
 
@@ -44,6 +46,8 @@ if (isset($argv[1]) && $argv[1] === '--config') {
         $commitHash = shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && git rev-list -n 1 --before='". $targetDate ."' HEAD");
 
         $output = shell_exec("cd ".$projectConfigDataProvider->checkoutPath ." && git checkout ".$commitHash);
+
+        shell_exec("cd ".$projectConfigDataProvider->checkoutPath. " && composer install");
 
         $tsChartTime = $tsChartTime - $weekInSeconds;
         $targetDate = date('Y-m-d', $tsChartTime);
