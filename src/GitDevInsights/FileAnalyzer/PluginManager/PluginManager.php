@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer\Plugin;
+namespace GitDevInsights\FileAnalyzer\PluginManager;
 
 final class PluginManager
 {

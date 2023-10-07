@@ -5,8 +5,8 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
+use GitDevInsights\FileAnalyzer\Plugins\Javascript\JsInlineScriptTagFileAnalyzer;
 use GitDevInsights\FileTools\Service\JsFileUsageFileAnalyzer;
-use GitDevInsights\DeepFileInsights\Service\JsInlineScriptTagFileAnalyzer;
 
 class CodeDistributionFileExtensionAnalyzer
 {

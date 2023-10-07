@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer\Plugin;
+namespace GitDevInsights\FileAnalyzer\PluginManager;
 
 interface FileAnalyzerPlugin {
     public function canHandleFile(string $filePath): bool;
