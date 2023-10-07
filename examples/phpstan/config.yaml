@@ -1,0 +1,11 @@
+# Example config to show how the tool works
+# We will inspect the contao repository here
+
+project:
+  project_name: phpstan
+  repository_url: https://github.com/contao/contao.git
+  checkout_path: insights/checkout/phpstan
+  analyse_result_path: insights/generated/phpstan
+
+stats:
+  time_range_weeks: 150
