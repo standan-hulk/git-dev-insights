@@ -2,7 +2,6 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins\Javascript;
 
-use GitDevInsights\Common\Types\JsonResult;
 use GitDevInsights\FileAnalyzer\Plugins\PluginAnalysisResult;
 use GitDevInsights\FileAnalyzer\Plugins\FileAnalyzerPlugin;
 
@@ -17,8 +16,6 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
         $this->allowedExtensions = self::SUPPORTED_FILE_EXTENSIONS;
         $this->name = self::NAME;
     }
-
-    // TODO: cumulate result
 
     public function analyzeFile(string $fileContent): PluginAnalysisResult
     {

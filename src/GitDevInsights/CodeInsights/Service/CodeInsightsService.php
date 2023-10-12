@@ -10,6 +10,7 @@ use GitDevInsights\CodeInsights\Persistence\MappingLanguageFocusDataProvider;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
 use GitDevInsights\FileAnalyzer\Plugins\DirectoryFileAnalyzer;
+use GitDevInsights\FileAnalyzer\Plugins\PluginAnalysisResult;
 use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
 
 class CodeInsightsService {
@@ -51,7 +52,7 @@ class CodeInsightsService {
     }
 
     /**
-     * @return array<string, AnalysisResult>
+     * @return array<string, PluginAnalysisResult>
      */
     private function performPluginAnalysis(): array {
 

@@ -25,6 +25,10 @@ final class PluginManager
         foreach ($files as $fileName) {
             $fileContent = file_get_contents($fileName);
 
+            if ($fileContent === false) {
+                continue;
+            }
+
             foreach ($this->plugins as $plugin) {
                 if ($plugin->canHandleFile($fileName)) {
                     $fileAnalysisResult = $plugin->analyzeFile($fileContent);

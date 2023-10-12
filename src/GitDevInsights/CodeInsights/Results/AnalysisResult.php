@@ -1,5 +1,8 @@
 <?php
+
 namespace GitDevInsights\CodeInsights\Results;
+
+use GitDevInsights\FileAnalyzer\Plugins\PluginAnalysisResult;
 
 class AnalysisResult
 {
@@ -21,12 +24,12 @@ class AnalysisResult
     private array $languageFocusAnalysisResult = [];
 
     /**
-     * @var array array<string, AnalysisResult>
+     * @var array<array<string, PluginAnalysisResult>>
      */
     private array $pluginAnalysisResult = [];
 
     /**
-     * @param array<string, AnalysisResult> $pluginAnalysisResult
+     * @param array<string, PluginAnalysisResult> $pluginAnalysisResult
      * @return void
      */
     public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult, array $pluginAnalysisResult): void

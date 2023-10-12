@@ -2,10 +2,11 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins;
 
-use GitDevInsights\Common\Types\JsonResult;
-
 class FileAnalyzerPlugin implements FileAnalyzerInterface
 {
+    /**
+     * @var string[]
+     */
     protected array $allowedExtensions = [];
 
     /**
