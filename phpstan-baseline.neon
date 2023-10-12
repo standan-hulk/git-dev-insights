@@ -189,8 +189,3 @@ parameters:
 			message: "#^Public property \"GitDevInsights\\\\CodeInsights\\\\Service\\\\CodeInsightsService\\:\\:\\$analysisResult\" is never used$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Service/CodeInsightsService.php
-
-		-
-			message: "#^Public constant \"GitDevInsights\\\\DeepFileInsights\\\\Service\\\\JsInlineScriptTagFileAnalyzer\\:\\:SUPPORTED_FILE_EXTENSIONS\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/DeepFileInsights/Service/JsInlineScriptTagFileAnalyzer.php

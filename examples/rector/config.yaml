@@ -1,0 +1,11 @@
+# Example config to show how the tool works
+# We will inspect the contao repository here
+
+project:
+  project_name: rector
+  repository_url: https://github.com/rectorphp/rector.git
+  checkout_path: insights/checkout/rector
+  analyse_result_path: insights/generated/rector
+
+stats:
+  time_range_weeks: 150

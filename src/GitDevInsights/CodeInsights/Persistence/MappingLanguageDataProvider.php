@@ -52,4 +52,17 @@ class MappingLanguageDataProvider {
     public function getFileExtensions(): array {
         return $this->fileExtensions;
     }
+
+    /**
+     * @return string[]
+     */
+    public function getFileExtensionsStringList() : array {
+        $result = [];
+
+        foreach($this->fileExtensions as $extension) {
+            $result[] = $extension->name;
+        }
+
+        return $result;
+    }
 }

@@ -5,8 +5,8 @@ namespace GitDevInsights\CodeInsights\Analyzer;
 use DirectoryIterator;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Results\FileExtensionAnalysisResult;
+use GitDevInsights\FileAnalyzer\Plugins\Javascript\JsInlineScriptTagFileAnalyzer;
 use GitDevInsights\FileTools\Service\JsFileUsageFileAnalyzer;
-use GitDevInsights\DeepFileInsights\Service\JsInlineScriptTagFileAnalyzer;
 
 class CodeDistributionFileExtensionAnalyzer
 {
@@ -77,8 +77,6 @@ class CodeDistributionFileExtensionAnalyzer
                 $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
-                    $this->getDeeperInsights($filePath, $fileExtension);
-
                     // Todo: hier Tool von Sebastian Bergmann ausprobieren
                     $lines = file($filePath);
 
@@ -93,15 +91,6 @@ class CodeDistributionFileExtensionAnalyzer
                     }
                 }
             }
-        }
-    }
-
-    private function getDeeperInsights(string $fileName, string $fileExtension): void
-    {
-        if (JsInlineScriptTagFileAnalyzer::isAllowedToScan($fileExtension)) {
-            $jsInlineScriptTagFileAnalyzer = new JsInlineScriptTagFileAnalyzer($fileName);
-            $linesCounter = $jsInlineScriptTagFileAnalyzer->countInlineScriptLines();
-            $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_js__", $linesCounter);
         }
     }
 }

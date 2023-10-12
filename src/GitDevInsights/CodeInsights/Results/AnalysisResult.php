@@ -1,5 +1,8 @@
 <?php
+
 namespace GitDevInsights\CodeInsights\Results;
+
+use GitDevInsights\FileAnalyzer\Plugins\PluginAnalysisResult;
 
 class AnalysisResult
 {
@@ -20,11 +23,21 @@ class AnalysisResult
      */
     private array $languageFocusAnalysisResult = [];
 
-    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult): void
+    /**
+     * @var array<array<string, PluginAnalysisResult>>
+     */
+    private array $pluginAnalysisResult = [];
+
+    /**
+     * @param array<string, PluginAnalysisResult> $pluginAnalysisResult
+     * @return void
+     */
+    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult, array $pluginAnalysisResult): void
     {
         $this->fileExtensionAnalysisResult[$resultTimestamp] = $fileExtensionAnalysisResult;
         $this->languageAnalysisResult[$resultTimestamp] = $languageAnalysisResult;
         $this->languageFocusAnalysisResult[$resultTimestamp] = $languageFocusAnalysisResult;
+        $this->pluginAnalysisResult[$resultTimestamp] = $pluginAnalysisResult;
     }
 
     public function __toJson(): string {
@@ -43,7 +56,8 @@ class AnalysisResult
         $analysisData = [
             'language-fileext-data' => [],
             'language-global-data' => [],
-            'language-focus-data' => []
+            'language-focus-data' => [],
+            'plugin-analysis-data' => []
         ];
 
         foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
@@ -56,6 +70,12 @@ class AnalysisResult
 
         foreach ($this->languageFocusAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-focus-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
+        }
+
+        foreach ($this->pluginAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisResult = $analysisResultRecord['js-inline-script-tag'];
+
+            $analysisData['plugin-analysis-data']['js-inline-script-tag'][date("Y-m-d", $resultTimestamp)] = $analysisResult->values;
         }
 
         return $analysisData;
