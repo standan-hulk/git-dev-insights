@@ -6,8 +6,8 @@ use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 use GitDevInsights\CodeInsights\Service\GeneratorFileExtensionChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageStackFocusChartService;
-use GitDevInsights\FileAnalyzer\PluginManager;
 use GitDevInsights\FileAnalyzer\Plugins\Javascript\JsInlineScriptTagFileAnalyzer;
+use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
 
 require_once('vendor/autoload.php');
 

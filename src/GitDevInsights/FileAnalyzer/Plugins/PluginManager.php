@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer;
+namespace GitDevInsights\FileAnalyzer\Plugins;
 
 final class PluginManager
 {
@@ -22,20 +22,22 @@ final class PluginManager
     /**
      * @param string[] $files
      */
-    public function analyzeFiles(array $files) : void
+    public function analyzeFiles(array $files) : array
     {
+        $result = [];
+
         foreach ($files as $fileName) {
             $fileContent = file_get_contents($fileName);
 
             foreach ($this->plugins as $plugin) {
                 if ($plugin->canHandleFile($fileName)) {
-                    dump($plugin);die;
                     $jsonResult = $plugin->analyzeFile($fileContent);
-                    dump($jsonResult);
+
+                    $result[$jsonResult::class][] = $jsonResult;
                 }
             }
-
-            dump('ende');die;
         }
+
+        return $result;
     }
 }

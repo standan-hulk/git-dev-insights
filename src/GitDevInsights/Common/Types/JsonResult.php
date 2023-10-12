@@ -2,17 +2,16 @@
 
 namespace GitDevInsights\Common\Types;
 
+
+/**
+ * @immmutable
+ */
 final class JsonResult
 {
-    private array $jsonData;
+    public string $jsonData;
 
-    public function __construct(array $jsonData)
+    public function __construct(string $jsonData)
     {
         $this->jsonData = $jsonData;
-    }
-
-    public function toJsonString(): string
-    {
-        return json_encode($this->jsonData, JSON_THROW_ON_ERROR);
     }
 }

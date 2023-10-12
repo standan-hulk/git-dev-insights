@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer;
+namespace GitDevInsights\FileAnalyzer\Plugins;
 
 use DirectoryIterator;
 

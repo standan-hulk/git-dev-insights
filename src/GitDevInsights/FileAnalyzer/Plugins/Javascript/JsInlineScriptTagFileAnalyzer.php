@@ -2,25 +2,29 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins\Javascript;
 
-use GitDevInsights\FileAnalyzer\FileAnalyzerPlugin;
+use GitDevInsights\Common\Types\JsonResult;
+use GitDevInsights\FileAnalyzer\Plugins\FileAnalyzerPlugin;
 
 final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
 {
-    private const SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
+    private const SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php', 'yml'];
 
     public function __construct()
     {
         $this->allowedExtensions = self::SUPPORTED_FILE_EXTENSIONS;
     }
 
-    public function countInlineScriptLines(string $fileContent): int {
+    // TODO: cumulate result
+
+    public function analyzeFile(string $fileContent): JsonResult
+    {
         if ('' === $fileContent) {
-            return 0;
+            return new JsonResult(['lines' => 0]);
         }
 
         // performance boost: only continue, if a script tag is found
         if (stripos($fileContent, '<script') === false) {
-            return 0;
+            return new JsonResult(['lines' => 0]);
         }
 
         $totalLineCount = 0;
@@ -43,7 +47,6 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
             }
         }
 
-        return $totalLineCount;
+        return new JsonResult(['lines' => $totalLineCount]);
     }
-
 }

@@ -9,8 +9,8 @@ use GitDevInsights\CodeInsights\Persistence\MappingLanguageDataProvider;
 use GitDevInsights\CodeInsights\Persistence\MappingLanguageFocusDataProvider;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
-use GitDevInsights\FileAnalyzer\DirectoryFileAnalyzer;
-use GitDevInsights\FileAnalyzer\PluginManager;
+use GitDevInsights\FileAnalyzer\Plugins\DirectoryFileAnalyzer;
+use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
 
 class CodeInsightsService {
     private CONST DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG = 'config/code-insights-languages.yaml';
@@ -60,11 +60,12 @@ class CodeInsightsService {
         $directoryFileAnalyzer = new DirectoryFileAnalyzer($allowedExtensions);
         $matchingFiles = $directoryFileAnalyzer->searchFilesInDirectory($this->projectConfigProvider->checkoutPath);
 
+        $result = [];
         if ($matchingFiles !== []) {
-            dump($this->pluginManager->analyzeFiles($matchingFiles));
+            $result = $this->pluginManager->analyzeFiles($matchingFiles);
         }
 
-        dump($allowedExtensions);die;
+        dump($result);die;
 
         $jsFileUsageFileAnalyzer->analyzeRepository();
     }
