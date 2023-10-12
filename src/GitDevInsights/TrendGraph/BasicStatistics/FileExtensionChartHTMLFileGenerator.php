@@ -31,7 +31,7 @@ class FileExtensionChartHTMLFileGenerator
         $simpleTrendGraphGenerator = new SimpleTrendGraphGenerator(
             $jsonData,
             'File Extension Trend Analysis',
-            'Usage of Programming Languages by Number of Lines of Code',
+            'Lines of code grouped by filetype',
             $this->filterKey,
             'Date',
             'Lines of code'
