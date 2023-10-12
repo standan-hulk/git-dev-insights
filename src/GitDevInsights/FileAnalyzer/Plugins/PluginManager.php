@@ -14,13 +14,9 @@ final class PluginManager
         $this->plugins[] = $plugin;
     }
 
-    public function getPlugins(): array
-    {
-        return $this->plugins;
-    }
-
     /**
      * @param string[] $files
+     * @return array<string, AnalysisResult>
      */
     public function analyzeFiles(array $files) : array
     {
@@ -31,9 +27,13 @@ final class PluginManager
 
             foreach ($this->plugins as $plugin) {
                 if ($plugin->canHandleFile($fileName)) {
-                    $jsonResult = $plugin->analyzeFile($fileContent);
+                    $fileAnalysisResult = $plugin->analyzeFile($fileContent);
 
-                    $result[$jsonResult::class][] = $jsonResult;
+                    if (!isset($result[$plugin->name])) {
+                        $result[$plugin->name] = $plugin->createEmptyAnalysisResult();
+                    }
+
+                    $result[$plugin->name]->add($fileAnalysisResult);
                 }
             }
         }
