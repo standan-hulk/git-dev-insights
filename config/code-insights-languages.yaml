@@ -1,9 +1,5 @@
 PHP:
   - php
-  - php3
-  - php4
-  - php5
-  - php7
 
 SQL:
   - sql
@@ -39,6 +35,3 @@ Documentation:
   - rst
   - md
 
-# deep insights
-JavaScript [INLINE]:
-  - __inline_js__

@@ -2,6 +2,8 @@
 
 namespace GitDevInsights\FileAnalyzer;
 
+use DirectoryIterator;
+
 final class DirectoryFileAnalyzer {
 
     /**
@@ -13,26 +15,44 @@ final class DirectoryFileAnalyzer {
      * @param string[] $allowedExtensions
      */
     public function __construct(array $allowedExtensions) {
-        $this->allowedExtensions = $allowedExtensions;
+        $this->allowedExtensions = array_map('strtolower', $allowedExtensions);
     }
 
     /**
      * @return string[]
      */
-    public function searchFilesInDirectory(string $directory): array {
-        $foundFiles = [];
+    public function searchFilesInDirectory(string $path): array
+    {
+        $result = [];
 
-        foreach ($this->allowedExtensions as $extension) {
-            $pattern = rtrim($directory, '/') . '/*.' . ltrim($extension, '.');
-            $files = glob($pattern);
+        $dir = new DirectoryIterator($path);
 
-            if ($files !== false) {
-                foreach ($files as $file) {
-                    $foundFiles[] = $file;
+        foreach ($dir as $fileInfo) {
+            if ($fileInfo->isDot()) {
+                continue;
+            }
+
+            $filePath = $fileInfo->getPathname();
+
+            if ($fileInfo->isDir()) {
+                $files = $this->searchFilesInDirectory($filePath);
+                if (count($files) > 0) {
+                    $result = array_merge($result, $files);
+                }
+            } elseif ($fileInfo->isFile()) {
+                $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+
+                if($extension === '') {
+                    continue;
+                }
+
+                if(in_array($extension, $this->allowedExtensions, true)) {
+                    $result[] = $filePath;
                 }
             }
         }
 
-        return $foundFiles;
+        return $result;
     }
 }

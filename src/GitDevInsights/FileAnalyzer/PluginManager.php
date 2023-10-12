@@ -19,19 +19,23 @@ final class PluginManager
         return $this->plugins;
     }
 
-    public function analyzeFilesWithSearchPattern(string $pattern) : void
+    /**
+     * @param string[] $files
+     */
+    public function analyzeFiles(array $files) : void
     {
-        $files = glob($pattern);
-
         foreach ($files as $fileName) {
             $fileContent = file_get_contents($fileName);
 
             foreach ($this->plugins as $plugin) {
                 if ($plugin->canHandleFile($fileName)) {
+                    dump($plugin);die;
                     $jsonResult = $plugin->analyzeFile($fileContent);
                     dump($jsonResult);
                 }
             }
+
+            dump('ende');die;
         }
     }
 }

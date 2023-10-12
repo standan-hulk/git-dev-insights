@@ -6,6 +6,8 @@ use GitDevInsights\CodeInsights\Service\CodeInsightsService;
 use GitDevInsights\CodeInsights\Service\GeneratorFileExtensionChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageStackFocusChartService;
+use GitDevInsights\FileAnalyzer\PluginManager;
+use GitDevInsights\FileAnalyzer\Plugins\Javascript\JsInlineScriptTagFileAnalyzer;
 
 require_once('vendor/autoload.php');
 
@@ -36,7 +38,10 @@ if (isset($argv[1]) && $argv[1] === '--config') {
     $weekInSeconds = 7 * 24 * 60 * 60;
     $monthInSeconds = $weekInSeconds * 4;
 
-    $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult);
+    $pluginManager = new PluginManager();
+    $pluginManager->registerPlugin(new JsInlineScriptTagFileAnalyzer());
+
+    $codeInsightsService = new CodeInsightsService($projectConfigDataProvider, $analysisResult, $pluginManager);
 
     for($i = 0; $i < $projectConfigDataProvider->timeRangeWeeks; $i++) {
         $codeInsightsService->analyse($tsChartTime);
