@@ -31,16 +31,6 @@ parameters:
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
 
 		-
-			message: "#^Method GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FileExtensionChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/TrendGraph/BasicStatistics/FileExtensionChartHTMLFileGenerator.php
-
-		-
-			message: "#^Property GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FileExtensionChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/TrendGraph/BasicStatistics/FileExtensionChartHTMLFileGenerator.php
-
-		-
 			message: "#^Method GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FocusChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/TrendGraph/BasicStatistics/FocusChartHTMLFileGenerator.php
@@ -54,16 +44,6 @@ parameters:
 			message: "#^Property GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FocusChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/TrendGraph/BasicStatistics/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\LanguageChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/TrendGraph/BasicStatistics/LanguageChartHTMLFileGenerator.php
-
-		-
-			message: "#^Property GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\LanguageChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/TrendGraph/BasicStatistics/LanguageChartHTMLFileGenerator.php
 
 		-
 			message: "#^Method GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphFilter\\:\\:filterDataByValuesSet\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
