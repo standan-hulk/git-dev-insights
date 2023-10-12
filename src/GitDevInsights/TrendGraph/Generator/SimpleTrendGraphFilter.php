@@ -4,41 +4,41 @@ namespace GitDevInsights\TrendGraph\Generator;
 
 class SimpleTrendGraphFilter
 {
-    private array $jsonData;
-
     private string $filterKey;
 
 
-    public function __construct(string $filterKey, array $jsonData)
+    public function __construct(string $filterKey)
     {
         $this->filterKey = $filterKey;
-        $this->jsonData = $this->filterDataByValuesSet($jsonData);
     }
 
     /**
      * @return array<int|string, int>
      */
-    private function getValuesSetForOutput(): array {
-        $dates = $this->jsonData[$this->filterKey];
+    private function getValuesSetForOutput(array $jsonData): array {
+        if ($jsonData[$this->filterKey] === []) {
+            return [];
+        }
 
         $valuesSet = [];
 
-        if ($dates !== []) {
-            foreach ($dates as $values) {
-                foreach ($values as $key => $value) {
-                    if ((int)$value > 0) {
-                        $valuesSet[$key] = 1;
-                    }
+        foreach ($jsonData[$this->filterKey] as $values) {
+            foreach ($values as $key => $value) {
+
+                if ((int)$value > 0) {
+                    $valuesSet[$key] = 1;
                 }
             }
         }
+
         return $valuesSet;
     }
 
     public function filterDataByValuesSet(array $jsonData): array {
         $filteredData = [];
         $result = [];
-        $valuesSet = $this->getValuesSetForOutput();
+
+        $valuesSet = $this->getValuesSetForOutput($jsonData);
 
         $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
 

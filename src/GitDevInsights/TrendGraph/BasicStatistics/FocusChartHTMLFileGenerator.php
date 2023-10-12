@@ -14,11 +14,9 @@ class FocusChartHTMLFileGenerator
 
     public function __construct(array $jsonData, string $chartTitle)
     {
-        $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
-
-        $trendGraphFilter = new SimpleTrendGraphFilter($this->filterKey, $jsonData);
-        $this->jsonData[$this->filterKey] = $trendGraphFilter->filterDataByValuesSet();
+        $trendGraphFilter = new SimpleTrendGraphFilter($this->filterKey);
+        $this->jsonData = $trendGraphFilter->filterDataByValuesSet($jsonData);
     }
 
     public function renderChartOutput(): string
