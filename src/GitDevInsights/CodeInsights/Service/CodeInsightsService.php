@@ -36,11 +36,6 @@ class CodeInsightsService {
     }
 
     public function analyse(int $currentTimestamp): void {
-
-        $this->performPluginAnalysis();
-        dump("ende");die;
-
-
         $codeDistributionFileExtAnalyzer = new CodeDistributionFileExtensionAnalyzer($this->languageDataProvider, $this->projectConfigProvider->checkoutPath);
         $fileExtensionAnalysisResult = $codeDistributionFileExtAnalyzer->analyzeRepository();
 
@@ -50,10 +45,17 @@ class CodeInsightsService {
         $codeDistributionLanguageAnalyzer = new CodeDistributionFocusAnalyzer($this->languageFocusDataProvider, $languageAnalysisResult);
         $languageFocusAnalysisResult = $codeDistributionLanguageAnalyzer->analyze();
 
-        $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult, $languageFocusAnalysisResult);
+        $pluginAnalysisResult = $this->performPluginAnalysis();
+
+        $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult, $languageFocusAnalysisResult, $pluginAnalysisResult);
+
+        dump($this->analysisResult);die;
     }
 
-    private function performPluginAnalysis(): void {
+    /**
+     * @return array<string, AnalysisResult>
+     */
+    private function performPluginAnalysis(): array {
 
         $allowedExtensions = $this->languageDataProvider->getFileExtensionsStringList();
 
@@ -65,8 +67,6 @@ class CodeInsightsService {
             $result = $this->pluginManager->analyzeFiles($matchingFiles);
         }
 
-        dump($result);die;
-
-        $jsFileUsageFileAnalyzer->analyzeRepository();
+        return $result;
     }
 }

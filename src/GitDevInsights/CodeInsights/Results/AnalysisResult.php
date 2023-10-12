@@ -20,11 +20,21 @@ class AnalysisResult
      */
     private array $languageFocusAnalysisResult = [];
 
-    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult): void
+    /**
+     * @var array array<string, AnalysisResult>
+     */
+    private array $pluginAnalysisResult = [];
+
+    /**
+     * @param array<string, AnalysisResult> $pluginAnalysisResult
+     * @return void
+     */
+    public function addResults(int $resultTimestamp, FileExtensionAnalysisResult $fileExtensionAnalysisResult, LanguageAnalysisResult $languageAnalysisResult, LanguageFocusAnalysisResult $languageFocusAnalysisResult, array $pluginAnalysisResult): void
     {
         $this->fileExtensionAnalysisResult[$resultTimestamp] = $fileExtensionAnalysisResult;
         $this->languageAnalysisResult[$resultTimestamp] = $languageAnalysisResult;
         $this->languageFocusAnalysisResult[$resultTimestamp] = $languageFocusAnalysisResult;
+        $this->pluginAnalysisResult[$resultTimestamp] = $pluginAnalysisResult;
     }
 
     public function __toJson(): string {
@@ -43,7 +53,8 @@ class AnalysisResult
         $analysisData = [
             'language-fileext-data' => [],
             'language-global-data' => [],
-            'language-focus-data' => []
+            'language-focus-data' => [],
+            'plugin-analysis-data' => []
         ];
 
         foreach ($this->fileExtensionAnalysisResult as $resultTimestamp => $analysisResultRecord) {
@@ -57,6 +68,12 @@ class AnalysisResult
         foreach ($this->languageFocusAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisData['language-focus-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
         }
+
+        foreach ($this->pluginAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisData['plugin-analysis-data'][date("Y-m-d", $resultTimestamp)] = $this->pluginAnalysisResult;
+        }
+
+        dump($analysisData);die;
 
         return $analysisData;
     }

@@ -77,8 +77,6 @@ class CodeDistributionFileExtensionAnalyzer
                 $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
                 if (in_array($fileExtension, $this->supportedExtensions)) {
-                    $this->getDeeperInsights($filePath, $fileExtension);
-
                     // Todo: hier Tool von Sebastian Bergmann ausprobieren
                     $lines = file($filePath);
 
@@ -93,15 +91,6 @@ class CodeDistributionFileExtensionAnalyzer
                     }
                 }
             }
-        }
-    }
-
-    private function getDeeperInsights(string $fileName, string $fileExtension): void
-    {
-        if (JsInlineScriptTagFileAnalyzer::isAllowedToScan($fileExtension)) {
-            $jsInlineScriptTagFileAnalyzer = new JsInlineScriptTagFileAnalyzer($fileName);
-            $linesCounter = $jsInlineScriptTagFileAnalyzer->countInlineScriptLines();
-            $this->fileExtensionAnalysisResult->addFileExtensionLines("__inline_js__", $linesCounter);
         }
     }
 }
