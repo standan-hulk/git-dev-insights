@@ -11,6 +11,7 @@ use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
 use GitDevInsights\TrendGraph\BasicStatistics\FileExtensionChartHTMLFileGenerator;
 use GitDevInsights\TrendGraph\BasicStatistics\FocusChartHTMLFileGenerator;
 use GitDevInsights\TrendGraph\BasicStatistics\LanguageChartHTMLFileGenerator;
+use GitDevInsights\TrendGraph\CustomStatistics\JsInlineScriptChartFileGenerator;
 
 require_once('vendor/autoload.php');
 
@@ -71,6 +72,10 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $focusChartGenerator = new GeneratorLanguageStackFocusChartService($analysisResult, $projectConfigDataProvider);
     $focusChartGenerator->generateOutputFile();
+
+    // example usage of very simple custom chart generator - this has to be extended in several ways to make it reusable
+    $jsInlineScriptChartFileGenerator = new JsInlineScriptChartFileGenerator($analysisResult, $projectConfigDataProvider);
+    $jsInlineScriptChartFileGenerator->writeChartOutputToFile();
 
     shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {
