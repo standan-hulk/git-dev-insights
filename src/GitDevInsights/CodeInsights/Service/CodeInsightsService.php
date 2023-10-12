@@ -26,7 +26,7 @@ class CodeInsightsService {
 
     private PluginManager $pluginManager;
 
-    public AnalysisResult $analysisResult;
+    private AnalysisResult $analysisResult;
 
     public function __construct(ProjectConfigDataProvider $projectConfigDataProvider, AnalysisResult $analysisResult, PluginManager $pluginManager) {
         $this->languageDataProvider = new MappingLanguageDataProvider(self::DATA_PROVIDER_INSIGHTS_LANGUAGE_CONFIG);

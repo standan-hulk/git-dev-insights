@@ -24,17 +24,20 @@ class ProjectConfigDataProvider {
         $this->analyseResultPath = $configData['project']['analyse_result_path'] ?? '';
         $this->projectName = $configData['project']['project_name'] ?? '';
 
-        $this->timeRangeWeeks = (int)$configData['stats']['time_range_weeks'] ?? 10;
+        $this->timeRangeWeeks = (int)($configData['stats']['time_range_weeks'] ?? 10);
     }
 
-    /**
-     * @return array<string, string>
-     */
     private function loadConfig(string $configFile): array {
         if (!file_exists($configFile)) {
             throw new \InvalidArgumentException("Config file not found: $configFile");
         }
 
-        return Yaml::parseFile($configFile);
+        $result = Yaml::parseFile($configFile);
+
+        if (!is_array($result)) {
+            throw new RuntimeException("Invalid data in file: $configFile");
+        }
+
+        return $result;
     }
 }

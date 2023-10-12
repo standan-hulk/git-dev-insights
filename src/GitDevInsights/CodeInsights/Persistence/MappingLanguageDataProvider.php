@@ -21,6 +21,10 @@ class MappingLanguageDataProvider {
     public function __construct(string $filePath) {
         $data = Yaml::parseFile($filePath);
 
+        if (!is_array($data)) {
+            throw new RuntimeException("Invalid data in file: $filePath");
+        }
+
         foreach ($data as $languageName => $extensions) {
             $programmingLanguage = new ProgrammingLanguage($languageName);
             $this->programmingLanguages[] = $programmingLanguage;
