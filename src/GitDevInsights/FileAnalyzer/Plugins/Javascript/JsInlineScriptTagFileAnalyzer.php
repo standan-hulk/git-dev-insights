@@ -2,14 +2,15 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins\Javascript;
 
-use GitDevInsights\FileAnalyzer\PluginManager\FileAnalyzerPlugin;
+use GitDevInsights\FileAnalyzer\FileAnalyzerPlugin;
 
-final class JsInlineScriptTagFileAnalyzer implements FileAnalyzerPlugin
+final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
 {
-    public CONST SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
+    private const SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
 
-    public static function isAllowedToScan(string $fileExt) : bool {
-        return (in_array($fileExt, self::SUPPORTED_FILE_EXTENSIONS));
+    public function __construct()
+    {
+        $this->allowedExtensions = self::SUPPORTED_FILE_EXTENSIONS;
     }
 
     public function countInlineScriptLines(string $fileContent): int {
@@ -45,13 +46,4 @@ final class JsInlineScriptTagFileAnalyzer implements FileAnalyzerPlugin
         return $totalLineCount;
     }
 
-    public function canHandleFile(string $filePath): bool
-    {
-        // TODO: Implement canHandleFile() method.
-    }
-
-    public function analyzeFile(string $filePath)
-    {
-        // TODO: Implement analyzeFile() method.
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer\PluginManager;
+namespace GitDevInsights\FileAnalyzer;
 
 final class PluginManager
 {
@@ -29,6 +29,7 @@ final class PluginManager
             foreach ($this->plugins as $plugin) {
                 if ($plugin->canHandleFile($fileName)) {
                     $jsonResult = $plugin->analyzeFile($fileContent);
+                    dump($jsonResult);
                 }
             }
         }

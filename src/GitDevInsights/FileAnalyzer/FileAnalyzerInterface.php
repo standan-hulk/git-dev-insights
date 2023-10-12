@@ -1,10 +1,10 @@
 <?php
 
-namespace GitDevInsights\FileAnalyzer\PluginManager;
+namespace GitDevInsights\FileAnalyzer;
 
 use GitDevInsights\Common\Types\JsonResult;
 
-interface FileAnalyzerPlugin {
+interface FileAnalyzerInterface {
     public function canHandleFile(string $filePath): bool;
 
     public function analyzeFile(string $filePath): JsonResult;

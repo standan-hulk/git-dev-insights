@@ -11,7 +11,7 @@ final class JsonResult
         $this->jsonData = $jsonData;
     }
 
-    public function toJsonEncoded(): string
+    public function toJsonString(): string
     {
         return json_encode($this->jsonData, JSON_THROW_ON_ERROR);
     }
