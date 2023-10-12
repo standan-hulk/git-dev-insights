@@ -69,7 +69,11 @@ class AnalysisResult
             $analysisData['language-focus-data'][date("Y-m-d", $resultTimestamp)] = $analysisResultRecord->getData();
         }
 
-        $analysisData['plugin-analysis-data'][date("Y-m-d", $resultTimestamp)] = $this->pluginAnalysisResult;
+        foreach ($this->pluginAnalysisResult as $resultTimestamp => $analysisResultRecord) {
+            $analysisResult = $analysisResultRecord['js-inline-script-tag'];
+
+            $analysisData['plugin-analysis-data'][date("Y-m-d", $resultTimestamp)] = $analysisResult->values;
+        }
 
         return $analysisData;
     }

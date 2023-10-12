@@ -3,7 +3,7 @@
 namespace GitDevInsights\FileAnalyzer\Plugins\Javascript;
 
 use GitDevInsights\Common\Types\JsonResult;
-use GitDevInsights\FileAnalyzer\Plugins\AnalysisResult;
+use GitDevInsights\FileAnalyzer\Plugins\PluginAnalysisResult;
 use GitDevInsights\FileAnalyzer\Plugins\FileAnalyzerPlugin;
 
 final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
@@ -20,7 +20,7 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
 
     // TODO: cumulate result
 
-    public function analyzeFile(string $fileContent): AnalysisResult
+    public function analyzeFile(string $fileContent): PluginAnalysisResult
     {
         if ('' === $fileContent) {
             return $this->createEmptyAnalysisResult();
@@ -28,7 +28,7 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
 
         // performance boost: only continue, if a script tag is found
         if (stripos($fileContent, '<script') === false) {
-            return new AnalysisResult(['lines' => 0]);
+            return new PluginAnalysisResult(['lines' => 0]);
         }
 
         $totalLineCount = 0;
@@ -51,11 +51,11 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
             }
         }
 
-        return new AnalysisResult(['lines' => $totalLineCount]);
+        return new PluginAnalysisResult(['lines' => $totalLineCount]);
     }
 
-    public function createEmptyAnalysisResult(): AnalysisResult
+    public function createEmptyAnalysisResult(): PluginAnalysisResult
     {
-        return new AnalysisResult(['lines' => 0]);
+        return new PluginAnalysisResult(['lines' => 0]);
     }
 }

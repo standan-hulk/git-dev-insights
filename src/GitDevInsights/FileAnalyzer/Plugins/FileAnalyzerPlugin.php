@@ -22,13 +22,13 @@ class FileAnalyzerPlugin implements FileAnalyzerInterface
         return in_array($fileExtension, $allowedExtensionsLowercase, true);
     }
 
-    public function analyzeFile(string $filePath): AnalysisResult
+    public function analyzeFile(string $filePath): PluginAnalysisResult
     {
-        return new AnalysisResult([]);
+        return new PluginAnalysisResult([]);
     }
 
-    public function createEmptyAnalysisResult(): AnalysisResult
+    public function createEmptyAnalysisResult(): PluginAnalysisResult
     {
-        return new AnalysisResult([]);
+        return new PluginAnalysisResult([]);
     }
 }

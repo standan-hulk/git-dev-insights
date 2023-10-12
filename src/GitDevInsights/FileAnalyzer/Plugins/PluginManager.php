@@ -16,7 +16,7 @@ final class PluginManager
 
     /**
      * @param string[] $files
-     * @return array<string, AnalysisResult>
+     * @return array<string, PluginAnalysisResult>
      */
     public function analyzeFiles(array $files) : array
     {

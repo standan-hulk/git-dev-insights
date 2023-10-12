@@ -2,13 +2,13 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins;
 
-final class AnalysisResult
+final class PluginAnalysisResult
 {
 
     /**
      * @var int[]
      */
-    private array $values;
+    public array $values;
 
     /**
      * @param int[] $values
@@ -19,7 +19,7 @@ final class AnalysisResult
         $this->values = $values;
     }
 
-    public function add(AnalysisResult $otherResult): void
+    public function add(PluginAnalysisResult $otherResult): void
     {
         foreach ($otherResult->values as $key => $value) {
             // create key, if not present
