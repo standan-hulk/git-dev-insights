@@ -1,6 +1,6 @@
 <?php
 
-namespace GitDevInsights\CodeInsights\Output;
+namespace GitDevInsights\TrendGraph\BasicStatistics;
 
 class LanguageChartHTMLFileGenerator
 {

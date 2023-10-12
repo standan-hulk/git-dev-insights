@@ -3,9 +3,9 @@
 
 namespace GitDevInsights\CodeInsights\Service;
 
-use GitDevInsights\CodeInsights\Output\LanguageChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
+use GitDevInsights\TrendGraph\BasicStatistics\LanguageChartHTMLFileGenerator;
 
 class GeneratorLanguageChartService
 {

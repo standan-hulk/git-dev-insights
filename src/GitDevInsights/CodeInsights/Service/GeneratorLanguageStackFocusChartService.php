@@ -3,9 +3,9 @@
 
 namespace GitDevInsights\CodeInsights\Service;
 
-use GitDevInsights\CodeInsights\Output\FocusChartHTMLFileGenerator;
 use GitDevInsights\CodeInsights\Persistence\ProjectConfigDataProvider;
 use GitDevInsights\CodeInsights\Results\AnalysisResult;
+use GitDevInsights\TrendGraph\BasicStatistics\FocusChartHTMLFileGenerator;
 
 class GeneratorLanguageStackFocusChartService
 {
