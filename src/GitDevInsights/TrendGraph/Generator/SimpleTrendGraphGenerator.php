@@ -26,23 +26,6 @@ class SimpleTrendGraphGenerator
         $this->yAxisLabel = $yAxisLabel;
     }
 
-    private function getValuesSetForOutput(): array {
-        $dates = $this->jsonData[$this->filterKey];
-
-        $valuesSet = [];
-
-        if ($dates !== []) {
-            foreach ($dates as $values) {
-                foreach ($values as $key => $value) {
-                    if ((int)$value > 0) {
-                        $valuesSet[$key] = 1;
-                    }
-                }
-            }
-        }
-        return $valuesSet;
-    }
-
     public function renderChartOutput(): string
     {
         // Extract dates and labels
