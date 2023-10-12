@@ -6,7 +6,7 @@ final class PluginManager
 {
     private array $plugins = [];
 
-    public function registerPlugin(FileAnalyzerPlugin $plugin)
+    public function registerPlugin(FileAnalyzerPlugin $plugin): void
     {
         $this->plugins[] = $plugin;
     }
