@@ -2,27 +2,23 @@
 
 namespace GitDevInsights\FileAnalyzer\Plugins\Javascript;
 
-final class JsInlineScriptTagFileAnalyzer {
-    CONST SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
-    private string $fileName;
+use GitDevInsights\FileAnalyzer\PluginManager\FileAnalyzerPlugin;
 
-    public function __construct(string $fileName) {
-        $this->fileName = $fileName;
-    }
+final class JsInlineScriptTagFileAnalyzer implements FileAnalyzerPlugin
+{
+    public CONST SUPPORTED_FILE_EXTENSIONS = ['phtml', 'html', 'htm', 'php'];
 
     public static function isAllowedToScan(string $fileExt) : bool {
         return (in_array($fileExt, self::SUPPORTED_FILE_EXTENSIONS));
     }
 
-    public function countInlineScriptLines(): int {
-        $fileContents = file_get_contents($this->fileName);
-
-        if (false === $fileContents) {
+    public function countInlineScriptLines(string $fileContent): int {
+        if ('' === $fileContent) {
             return 0;
         }
 
         // performance boost: only continue, if a script tag is found
-        if (stripos($fileContents, '<script') === false) {
+        if (stripos($fileContent, '<script') === false) {
             return 0;
         }
 
@@ -30,7 +26,7 @@ final class JsInlineScriptTagFileAnalyzer {
         $pattern = '/<script[^>]*>(.*?)<\/script>/is';
 
         $matches = [];
-        preg_match_all($pattern, $fileContents, $matches);
+        preg_match_all($pattern, $fileContent, $matches);
 
         if ($matches[1] !== []) {
             foreach ($matches[1] as $scriptContent) {
@@ -47,5 +43,15 @@ final class JsInlineScriptTagFileAnalyzer {
         }
 
         return $totalLineCount;
+    }
+
+    public function canHandleFile(string $filePath): bool
+    {
+        // TODO: Implement canHandleFile() method.
+    }
+
+    public function analyzeFile(string $filePath)
+    {
+        // TODO: Implement analyzeFile() method.
     }
 }

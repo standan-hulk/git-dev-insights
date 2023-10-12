@@ -4,6 +4,9 @@ namespace GitDevInsights\FileAnalyzer\PluginManager;
 
 final class PluginManager
 {
+    /**
+     * @var FileAnalyzerPlugin[]
+     */
     private array $plugins = [];
 
     public function registerPlugin(FileAnalyzerPlugin $plugin): void
@@ -16,14 +19,16 @@ final class PluginManager
         return $this->plugins;
     }
 
-    public function analyzeFilesWithPattern(string $pattern)
+    public function analyzeFilesWithSearchPattern(string $pattern) : void
     {
         $files = glob($pattern);
 
-        foreach ($files as $file) {
+        foreach ($files as $fileName) {
+            $fileContent = file_get_contents($fileName);
+
             foreach ($this->plugins as $plugin) {
-                if ($plugin->canHandleFile($file)) {
-                    $plugin->analyzeFile($file);
+                if ($plugin->canHandleFile($fileName)) {
+                    $jsonResult = $plugin->analyzeFile($fileContent);
                 }
             }
         }
