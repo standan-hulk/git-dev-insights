@@ -29,7 +29,7 @@ class JsInlineScriptChartFileGenerator
         $jsonData = $trendGraphFilter->filterDataByValuesSet($jsonData);
 
         $chartTitle = 'JS Trend Analysis';
-        $chartSubtitle = 'Lines of code grouped by filetype';
+        $chartSubtitle = 'Lines of code grouped by JS inline script tag';
         $xAxisLabel = 'Date';
         $yAxisLabel = 'Lines of code';
 

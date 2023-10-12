@@ -25,7 +25,7 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
 
         // performance boost: only continue, if a script tag is found
         if (stripos($fileContent, '<script') === false) {
-            return new PluginAnalysisResult(['lines' => 0]);
+            return new PluginAnalysisResult(['Inline JS' => 0]);
         }
 
         $totalLineCount = 0;
@@ -48,11 +48,11 @@ final class JsInlineScriptTagFileAnalyzer extends FileAnalyzerPlugin
             }
         }
 
-        return new PluginAnalysisResult(['lines' => $totalLineCount]);
+        return new PluginAnalysisResult(['Inline JS' => $totalLineCount]);
     }
 
     public function createEmptyAnalysisResult(): PluginAnalysisResult
     {
-        return new PluginAnalysisResult(['lines' => 0]);
+        return new PluginAnalysisResult(['Inline JS' => 0]);
     }
 }
