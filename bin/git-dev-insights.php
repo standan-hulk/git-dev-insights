@@ -8,6 +8,9 @@ use GitDevInsights\CodeInsights\Service\GeneratorLanguageChartService;
 use GitDevInsights\CodeInsights\Service\GeneratorLanguageStackFocusChartService;
 use GitDevInsights\FileAnalyzer\Plugins\Javascript\JsInlineScriptTagFileAnalyzer;
 use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
+use GitDevInsights\TrendGraph\BasicStatistics\FileExtensionChartHTMLFileGenerator;
+use GitDevInsights\TrendGraph\BasicStatistics\FocusChartHTMLFileGenerator;
+use GitDevInsights\TrendGraph\BasicStatistics\LanguageChartHTMLFileGenerator;
 
 require_once('vendor/autoload.php');
 
@@ -60,14 +63,14 @@ if (isset($argv[1]) && $argv[1] === '--config') {
 
     $jsonData = $analysisResult->__toJsonData();
 
-    $languageChartGenerator = new GeneratorFileExtensionChartService($analysisResult, $projectConfigDataProvider);
-    $languageChartGenerator->generateOutputFile();
+    $fileExtensionChartGenerator = new FileExtensionChartHTMLFileGenerator($analysisResult, $projectConfigDataProvider);
+    $fileExtensionChartGenerator->writeChartOutputToFile();
 
-    $languageChartGenerator = new GeneratorLanguageChartService($analysisResult, $projectConfigDataProvider);
-    $languageChartGenerator->generateOutputFile();
+    $languageChartGenerator = new LanguageChartHTMLFileGenerator($analysisResult, $projectConfigDataProvider);
+    $languageChartGenerator->writeChartOutputToFile();
 
     $focusChartGenerator = new GeneratorLanguageStackFocusChartService($analysisResult, $projectConfigDataProvider);
-    $focusChartGenerator->generateOutputFile();;
+    $focusChartGenerator->generateOutputFile();
 
     shell_exec('rm -rf ' . escapeshellarg($projectConfigDataProvider->checkoutPath));
 } else {

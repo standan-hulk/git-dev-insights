@@ -16,66 +16,6 @@ parameters:
 			path: src/GitDevInsights/CodeInsights/Model/ProgrammingLanguage.php
 
 		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
-
-		-
-			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\FileExtensionChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FileExtensionChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:writeChartOutputToFile\\(\\) has parameter \\$fileName with no type specified\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\FocusChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/FocusChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
-
-		-
-			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
-
-		-
 			message: "#^Access to an undefined property GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:\\$programmingLanguages\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
@@ -89,3 +29,48 @@ parameters:
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FocusChartHTMLFileGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/BasicStatistics/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FocusChartHTMLFileGenerator\\:\\:writeChartOutputToFile\\(\\) has parameter \\$fileName with no type specified\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/BasicStatistics/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\TrendGraph\\\\BasicStatistics\\\\FocusChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/BasicStatistics/FocusChartHTMLFileGenerator.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphFilter\\:\\:filterDataByValuesSet\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphFilter.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphFilter\\:\\:filterDataByValuesSet\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphFilter.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphFilter\\:\\:getValuesSetForOutput\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphFilter.php
+
+		-
+			message: "#^Method GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphGenerator\\:\\:__construct\\(\\) has parameter \\$jsonData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphGenerator.php
+
+		-
+			message: "#^Property GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphGenerator.php
+
+		-
+			message: "#^Public method \"GitDevInsights\\\\TrendGraph\\\\Generator\\\\SimpleTrendGraphGenerator\\:\\:writeChartOutputToFile\\(\\)\" is never used$#"
+			count: 1
+			path: src/GitDevInsights/TrendGraph/Generator/SimpleTrendGraphGenerator.php

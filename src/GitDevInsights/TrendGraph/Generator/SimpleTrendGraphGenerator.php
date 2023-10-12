@@ -1,70 +1,43 @@
 <?php
 
-namespace GitDevInsights\CodeInsights\Output;
+namespace GitDevInsights\TrendGraph\Generator;
 
-class FileExtensionChartHTMLFileGenerator
+class SimpleTrendGraphGenerator
 {
     private array $jsonData;
 
     private string $chartTitle;
 
-    public function __construct(array $jsonData, string $chartTitle)
+    private string $filterKey;
+
+    private string $chartSubtitle;
+
+    private string $xAxisLabel;
+
+    private string $yAxisLabel;
+
+    public function __construct(array $jsonData, string $chartTitle, string $chartSubtitle, string $filterKey, string $xAxisLabel, string $yAxisLabel)
     {
-        $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
-        $this->jsonData['language-fileext-data'] = $this->filterDataByValuesSet();
-    }
-
-    private function getValuesSetForOutput(): array {
-        $dates = $this->jsonData['language-fileext-data'];
-
-        $valuesSet = [];
-
-        if ($dates !== []) {
-            foreach ($dates as $values) {
-                foreach ($values as $key => $value) {
-                    if ((int)$value > 0) {
-                        $valuesSet[$key] = 1;
-                    }
-                }
-            }
-        }
-        return $valuesSet;
-    }
-
-    private function filterDataByValuesSet(): array {
-        $filteredData = [];
-        $valuesSet = $this->getValuesSetForOutput();
-
-        $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
-
-        foreach ($this->jsonData['language-fileext-data'] as $date => $values) {
-            $filteredValues = $keyTemplate;
-
-            foreach ($values as $key => $value) {
-                if (isset($valuesSet[$key]) && (int)$value > 0) {
-                    $filteredValues[$key] = $value;
-                }
-            }
-
-            $filteredData[$date] = $filteredValues;
-        }
-
-        return $filteredData;
+        $this->chartSubtitle = $chartSubtitle;
+        $this->jsonData = $jsonData;
+        $this->filterKey = $filterKey;
+        $this->xAxisLabel = $xAxisLabel;
+        $this->yAxisLabel = $yAxisLabel;
     }
 
     public function renderChartOutput(): string
     {
         // Extract dates and labels
-        $dates = array_keys(array_reverse($this->jsonData['language-fileext-data']));
-        $labels = array_keys($this->jsonData['language-fileext-data'][$dates[0]]);
+        $dates = array_keys(array_reverse($this->jsonData[$this->filterKey]));
+        $labels = array_keys($this->jsonData[$this->filterKey][$dates[0]]);
 
         // Generate datasets for each label
         $datasets = [];
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                $data[] = $this->jsonData['language-fileext-data'][$date][$label];
+                $data[] = $this->jsonData[$this->filterKey][$date][$label];
             }
 
             $datasets[] = [
@@ -105,15 +78,15 @@ class FileExtensionChartHTMLFileGenerator
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>'.$this->chartTitle.' - Programming Language Trend Analysis</h1>
-<h2>Usage of File extensions by Number of Lines of Code</h2>
+<h1>'.$this->chartTitle.'</h1>
+<h2>'.$this->chartSubtitle.'</h2>
 <div style="width: 80vw; height: 90vh; margin: 0 auto;">
     <canvas id="trend_chart" width="" height=""></canvas>
 </div>
 
 <script>
-    var labels = ' . json_encode($dates) . ';
-    var datasets = ' . json_encode($datasets) . ';
+    var labels = ' . json_encode($dates, JSON_THROW_ON_ERROR) . ';
+    var datasets = ' . json_encode($datasets, JSON_THROW_ON_ERROR) . ';
 
     // Create the chart
     var ctx = document.getElementById("trend_chart").getContext("2d");
@@ -129,14 +102,14 @@ class FileExtensionChartHTMLFileGenerator
                     type: "category",
                     title: {
                         display: true,
-                        text: "Date"
+                        text: "'.$this->xAxisLabel.'"
                     }
                 },
                 y: {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: "Number of Lines of Code"
+                        text: "'.$this->yAxisLabel.'"
                     }
                 }
             },
