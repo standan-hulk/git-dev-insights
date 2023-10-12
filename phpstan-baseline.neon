@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Function calculateProgress\\(\\) has parameter \\$currentPosition with no type specified\\.$#"
-			count: 1
-			path: bin/git-dev-insights.php
-
-		-
-			message: "#^Function calculateProgress\\(\\) has parameter \\$total with no type specified\\.$#"
-			count: 1
-			path: bin/git-dev-insights.php
-
-		-
 			message: "#^Cognitive complexity for \"GitDevInsights\\\\CodeInsights\\\\Analyzer\\\\CodeDistributionFileExtensionAnalyzer\\:\\:processDirectory\\(\\)\" is 14, keep it under 13$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Analyzer/CodeDistributionFileExtensionAnalyzer.php
@@ -81,97 +71,17 @@ parameters:
 			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
 
 		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:getValuesSetForOutput\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
-
-		-
 			message: "#^Property GitDevInsights\\\\CodeInsights\\\\Output\\\\LanguageChartHTMLFileGenerator\\:\\:\\$jsonData type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Output/LanguageChartHTMLFileGenerator.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 2
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
-
-		-
-			message: "#^Parameter \\#1 \\$extension of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguageFileExt constructor expects string, mixed given\\.$#"
+			message: "#^Access to an undefined property GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:\\$programmingLanguages\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
-
-		-
-			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageDataProvider\\:\\:getProgrammingLanguages\\(\\)\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageDataProvider.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 2
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingFocus constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Parameter \\#1 \\$name of class GitDevInsights\\\\CodeInsights\\\\Model\\\\ProgrammingLanguage constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function strtolower expects string, mixed given\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageFocusDataProvider\\:\\:getProgrammingFocus\\(\\)\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Persistence\\\\MappingLanguageFocusDataProvider\\:\\:getProgrammingLanguages\\(\\)\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/MappingLanguageFocusDataProvider.php
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\ProjectConfigDataProvider\\:\\:loadConfig\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Offset 'analyse_result_path' on string on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Offset 'checkout_path' on string on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Offset 'project_name' on string on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Offset 'repository_url' on string on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
-
-		-
-			message: "#^Offset 'time_range_weeks' does not exist on string\\.$#"
+			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Persistence\\\\ProjectConfigDataProvider\\:\\:loadConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Persistence/ProjectConfigDataProvider.php
 
@@ -179,13 +89,3 @@ parameters:
 			message: "#^Method GitDevInsights\\\\CodeInsights\\\\Results\\\\AnalysisResult\\:\\:__toJsonData\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/GitDevInsights/CodeInsights/Results/AnalysisResult.php
-
-		-
-			message: "#^Public method \"GitDevInsights\\\\CodeInsights\\\\Results\\\\FileExtensionAnalysisResult\\:\\:getFileExtensionLines\\(\\)\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Results/FileExtensionAnalysisResult.php
-
-		-
-			message: "#^Public property \"GitDevInsights\\\\CodeInsights\\\\Service\\\\CodeInsightsService\\:\\:\\$analysisResult\" is never used$#"
-			count: 1
-			path: src/GitDevInsights/CodeInsights/Service/CodeInsightsService.php

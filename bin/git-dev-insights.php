@@ -11,7 +11,7 @@ use GitDevInsights\FileAnalyzer\Plugins\PluginManager;
 
 require_once('vendor/autoload.php');
 
-function calculateProgress($currentPosition, $total): string
+function calculateProgress(int $currentPosition, int $total): string
 {
     if ($total <= 0) {
         return '0%';
