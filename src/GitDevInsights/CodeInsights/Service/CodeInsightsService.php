@@ -48,8 +48,6 @@ class CodeInsightsService {
         $pluginAnalysisResult = $this->performPluginAnalysis();
 
         $this->analysisResult->addResults($currentTimestamp, $fileExtensionAnalysisResult, $languageAnalysisResult, $languageFocusAnalysisResult, $pluginAnalysisResult);
-
-        dump($this->analysisResult);die;
     }
 
     /**
