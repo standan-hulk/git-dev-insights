@@ -8,18 +8,20 @@ class LanguageChartHTMLFileGenerator
 
     private string $chartTitle;
 
+    private string $filterKey = 'language-global-data';
+
     public function __construct(array $jsonData, string $chartTitle)
     {
         $this->jsonData = $jsonData;
         $this->chartTitle = $chartTitle;
-        $this->jsonData['language-global-data'] = $this->filterDataByValuesSet();
+        $this->jsonData[$this->filterKey] = $this->filterDataByValuesSet();
     }
 
     /**
      * @return array<int|string, int>
      */
     private function getValuesSetForOutput(): array {
-        $dates = $this->jsonData['language-global-data'];
+        $dates = $this->jsonData[$this->filterKey];
 
         $valuesSet = [];
 
@@ -41,7 +43,7 @@ class LanguageChartHTMLFileGenerator
 
         $keyTemplate = array_combine(array_keys($valuesSet), array_fill(0, count($valuesSet), 0));
 
-        foreach ($this->jsonData['language-global-data'] as $date => $values) {
+        foreach ($this->jsonData[$this->filterKey] as $date => $values) {
             $filteredValues = $keyTemplate;
 
             foreach ($values as $key => $value) {
@@ -59,15 +61,15 @@ class LanguageChartHTMLFileGenerator
     public function renderChartOutput(): string
     {
         // Extract dates and labels
-        $dates = array_keys(array_reverse($this->jsonData['language-global-data']));
-        $labels = array_keys($this->jsonData['language-global-data'][$dates[0]]);
+        $dates = array_keys(array_reverse($this->jsonData[$this->filterKey]));
+        $labels = array_keys($this->jsonData[$this->filterKey][$dates[0]]);
 
         // Generate datasets for each label
         $datasets = [];
         foreach ($labels as $label) {
             $data = [];
             foreach ($dates as $date) {
-                $data[] = $this->jsonData['language-global-data'][$date][$label];
+                $data[] = $this->jsonData[$this->filterKey][$date][$label];
             }
 
             $datasets[] = [
