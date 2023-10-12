@@ -35,7 +35,7 @@ class SimpleTrendGraphFilter
         return $valuesSet;
     }
 
-    private function filterDataByValuesSet(array $jsonData): array {
+    public function filterDataByValuesSet(array $jsonData): array {
         $filteredData = [];
         $result = [];
         $valuesSet = $this->getValuesSetForOutput();

@@ -8,4 +8,4 @@ project:
   analyse_result_path: insights/generated/git-dev-insights
 
 stats:
-  time_range_weeks: 8
+  time_range_weeks: 2
