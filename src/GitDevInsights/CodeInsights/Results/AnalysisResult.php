@@ -75,7 +75,7 @@ class AnalysisResult
         foreach ($this->pluginAnalysisResult as $resultTimestamp => $analysisResultRecord) {
             $analysisResult = $analysisResultRecord['js-inline-script-tag'];
 
-            $analysisData['plugin-analysis-data'][date("Y-m-d", $resultTimestamp)] = $analysisResult->values;
+            $analysisData['plugin-analysis-data']['js-inline-script-tag'][date("Y-m-d", $resultTimestamp)] = $analysisResult->values;
         }
 
         return $analysisData;
