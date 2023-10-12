@@ -15,6 +15,9 @@ class LanguageChartHTMLFileGenerator
         $this->jsonData['language-global-data'] = $this->filterDataByValuesSet();
     }
 
+    /**
+     * @return array<int|string, int>
+     */
     private function getValuesSetForOutput(): array {
         $dates = $this->jsonData['language-global-data'];
 

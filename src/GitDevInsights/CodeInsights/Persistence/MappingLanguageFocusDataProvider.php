@@ -10,11 +10,6 @@ use Symfony\Component\Yaml\Yaml;
 class MappingLanguageFocusDataProvider {
 
     /**
-     * @var ProgrammingFocus[]
-     */
-    private array $programmingFocus = [];
-
-    /**
      * @var array<string, ProgrammingFocus>
      */
     private array $programmingLanguages = [];
@@ -28,7 +23,6 @@ class MappingLanguageFocusDataProvider {
 
         foreach ($data as $feBeFocusName => $programmingLanguages) {
             $programmingFocus = new ProgrammingFocus($feBeFocusName);
-            $this->programmingFocus[] = $programmingFocus;
 
             foreach ($programmingLanguages as $programmingLanguageName) {
                 $programmingLanguage = new ProgrammingLanguage($programmingLanguageName);

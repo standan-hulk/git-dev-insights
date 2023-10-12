@@ -2,6 +2,7 @@
 
 namespace GitDevInsights\CodeInsights\Persistence;
 
+use RuntimeException;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -29,7 +30,7 @@ class ProjectConfigDataProvider {
 
     private function loadConfig(string $configFile): array {
         if (!file_exists($configFile)) {
-            throw new \InvalidArgumentException("Config file not found: $configFile");
+            throw new RuntimeException("Config file not found: $configFile");
         }
 
         $result = Yaml::parseFile($configFile);
